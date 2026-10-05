@@ -4,30 +4,28 @@
     <title>Free web online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-
         .input 
         {
             height:40vh;
             width:100%; 
             box-shadow: inset 0px 0px 2px rgba(0,0,0,0.5); 
             box-sizing: border-box;
-            background:white;
+            background: white;
         }
 
         .tab__button
         {
-            display:flex; 
+            display: flex; 
             flex-direction: row;
             flex-wrap: nowrap;
-            gap:10px;
-            width:100px;
+            gap: 10px;
+            width: 100px;
             border-top: solid 0.2px rgba(0,0,0,0.2);
-            align-items:center;
+            align-items: center;
             border-radius: 4px 4px 0px 0px;
             padding-left: 4px;
             background: rgba(0,0,0,0.05);
         }
-
         .button-active
         {
             background: white;
@@ -35,348 +33,117 @@
             border-left: 0.6px solid rgba(0,0,0,0.6);
             border-right: 0.6px solid rgba(0,0,0,0.6);
         }
-
         .hidden
         {
-            display: none !important;    
+            display: none !important;
         }
-
     </style>
-
 </head>
-
-
 <body style="box-sizing: border-box;padding:4px;background: rgba(0,0,0,0.05)">
-
-    <div style="
-        display:grid;
-        grid-template-rows: 28px 28px 1fr 28px 1fr 28px;
-        height: 96vh;
-    ">
-
-
-        <!-- HEADER -->
-
-        <div style="
-            width:100%;
-            padding:4px; 
-            display:grid;
-            grid-template-columns:1fr 200px;
-        ">
-
-            Free online web
-
-        </div>
-
-
-        <!-- TAB -->
-
-        <div style="
-            width:100%;
-            padding:4px;
-            display:flex;
-            flex-direction:row;
-            flex-wrap:nowrap;
-            gap:10px;
-        ">
-
-
-            <div
-                class="tab__button button-active"
-                id="htmlButton"
-                onclick="showTab('html')"
-            >
-
-                <div style="
-                    width:10px;
-                    height:10px;
-                    background:orange;
-                "></div>
-
+    <div style="display:grid;grid-template-rows: 28px 28px 1fr 28px 1fr 28px;height:96vh;">
+        <div style="width:100%;padding:4px; display:grid;grid-template-columns:1fr 200px;">Free online web</div>
+        <div style="width:100%;padding:4px;display:flex;flex-direction:row;flex-wrap:nowrap;gap:10px;">
+            <div class="tab__button button-active" id="htmlButton" onclick="showTab('html')">
+                <div style="width:10px;height:10px;background:orange;"></div>
                 HTML
-
             </div>
-
-
-            <div
-                class="tab__button"
-                id="cssButton"
-                onclick="showTab('css')"
-            >
-
-                <div style="
-                    width:10px;
-                    height:10px;
-                    background:green;
-                "></div>
-
+            <div class="tab__button" id="cssButton" onclick="showTab('css')">
+                <div style="width:10px;height:10px;background:green;"></div>
                 CSS
-
             </div>
-
-
-            <div
-                class="tab__button"
-                id="jsButton"
-                onclick="showTab('js')"
-            >
-
-                <div style="
-                    width:10px;
-                    height:10px;
-                    background:red;
-                "></div>
-
+            <div class="tab__button" id="jsButton" onclick="showTab('js')">
+                <div style="width:10px;height:10px;background:red;"></div>
                 JS
-
             </div>
-
-
         </div>
-
-
-        <!-- HTML -->
-
-        <textarea
-            class="input"
-            id="htmlInput"
-            spellcheck="false"
-            oninput="load()"
-        ></textarea>
-
-
-        <!-- CSS -->
-
-        <textarea
-            class="input hidden"
-            id="cssInput"
-            spellcheck="false"
-            oninput="load()"
-        ></textarea>
-
-
-        <!-- JS -->
-
-        <textarea
-            class="input hidden"
-            id="jsInput"
-            spellcheck="false"
-            oninput="load()"
-        ></textarea>
-
-
-        <!-- TOOLBAR -->
-
-        <div style="
-            width:100%;
-            padding:4px; 
-            display:grid;
-            grid-template-columns:1fr 200px;
-        ">
-
+        <textarea class="input" id="htmlInput" spellcheck="false" oninput="load()"></textarea>
+        <textarea class="input hidden" id="cssInput" spellcheck="false" oninput="load()"></textarea>
+        <textarea class="input hidden" id="jsInput" spellcheck="false" oninput="load()"></textarea>
+        <div style="width:100%;padding:4px; display:grid;grid-template-columns:1fr 200px;">
             <div style="text-aling:left;">
-
-                <input
-                    type="radio"
-                    checked
-                >
-
-                Live
-
+                <input type="radio"checked> Live
             </div>
 
-
-            <div style="
-                display:flex;
-                flex-direction:row;
-                flex-wrap:nowrap;
-                gap:10px;
-            ">
-
+            <div style="display:flex;flex-direction:row;flex-wrap:nowrap;gap:10px;">
                 <div>⤓ Download</div>
-
                 <div>↺ Reset</div>
-
             </div>
-
         </div>
-
-
-        <!-- PREVIEW -->
-
-        <iframe
-            class="input"
-            id="view"
-            style="border:none;"
-        ></iframe>
-
-
-        <!-- FOOTER -->
-
+        <iframe class="input" id="view" style="border:none;"></iframe>
         <div>&nbsp;</div>
 
-
         <script>
-
-
             function showTab(id)
             {
+                const htmlInput =document.getElementById('htmlInput');
+                const cssInput =document.getElementById('cssInput');
+                const jsInput =document.getElementById('jsInput');
 
-                const htmlInput =
-                    document.getElementById('htmlInput');
-
-                const cssInput =
-                    document.getElementById('cssInput');
-
-                const jsInput =
-                    document.getElementById('jsInput');
-
-
-                const htmlButton =
-                    document.getElementById('htmlButton');
-
-                const cssButton =
-                    document.getElementById('cssButton');
-
-                const jsButton =
-                    document.getElementById('jsButton');
-
+                const htmlButton =document.getElementById('htmlButton');
+                const cssButton =document.getElementById('cssButton');
+                const jsButton =document.getElementById('jsButton');
 
                 switch (id)
                 {
-
                     case 'html':
-
                         htmlInput.classList.remove('hidden');
-
                         cssInput.classList.add('hidden');
-
                         jsInput.classList.add('hidden');
-
 
                         htmlButton.classList.add('button-active');
-
                         cssButton.classList.remove('button-active');
-
                         jsButton.classList.remove('button-active');
-
                         break;
-
 
                     case 'css':
-
                         htmlInput.classList.add('hidden');
-
                         cssInput.classList.remove('hidden');
-
                         jsInput.classList.add('hidden');
 
-
                         htmlButton.classList.remove('button-active');
-
                         cssButton.classList.add('button-active');
-
                         jsButton.classList.remove('button-active');
-
                         break;
-
 
                     case 'js':
-
                         htmlInput.classList.add('hidden');
-
                         cssInput.classList.add('hidden');
-
                         jsInput.classList.remove('hidden');
 
-
                         htmlButton.classList.remove('button-active');
-
                         cssButton.classList.remove('button-active');
-
                         jsButton.classList.add('button-active');
-
                         break;
-
                 }
-
             }
-
-
-            /*
-             * =====================================================
-             * LIVE PREVIEW
-             * =====================================================
-             */
 
             function load()
             {
-
-                const html =
-                    document.getElementById('htmlInput').value;
-
-
-                const css =
-                    document.getElementById('cssInput').value;
-
-
-                const js =
-                    document.getElementById('jsInput').value;
-
-
+                const html =document.getElementById('htmlInput').value;
+                const css =document.getElementById('cssInput').value;
+                const js =document.getElementById('jsInput').value;
                 const code = `
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<style>
-
-${css}
-
-</style>
-
-</head>
-
-
-<body>
-
-${html}
-
-
-<script>
-
-${js.replace(/<\/script/gi, '<\\/script')}
-
-<\/script>
-
-
-</body>
-
-</html>
-`;
-
+                <!DOCTYPE html>
+                <html>
+                    <head>
+                        <style>
+                            ${css}
+                        </style>
+                    </head>
+                    <body>
+                        ${html}
+                        <script>
+                            ${js.replace(/<\/script/gi, '<\\/script')}
+                        <\/script>
+                    </body>
+                </html>
+                `;
 
                 document.getElementById('view').srcdoc = code;
-
             }
-
-
-            /*
-             * =====================================================
-             * INITIAL LOAD
-             * =====================================================
-             */
-
             load();
-
-
         </script>
-
     </div>
-
 </body>
-
 </html>
 
