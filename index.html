@@ -72,6 +72,8 @@
             gap: 6px;
             padding: 6px 0px;
             overflow-x: auto;
+            width: 95vw;
+            margin-top: 48px;
         }
 
 
@@ -97,10 +99,12 @@
 
         .run-area
         {
+            width:90vw;
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 8px;
+            justify-content: flex-end;
+            gap: 24px;
             padding: 4px 0px;
         }
 
@@ -120,7 +124,7 @@
 <body style="box-sizing: border-box;padding:4px;background: rgba(0,0,0,0.05)">
 
 
-    <div class="avatar" id="avatar">
+    <div class="avatar" id="avatar" onclick="document.getElementById('control').style.display='block';">
 
         <div style="width: 100%; height: 100%; position: relative;">
 
@@ -154,7 +158,7 @@
                 grid-template-columns:1fr 200px;
             "
         >
-            PVC Free web
+            PVC Free web <div id="clock">00:00:00</div>
         </div>
 
 
@@ -283,7 +287,7 @@
         ></iframe>
 
 
-        <div>&nbsp;</div>
+        <div style="height: 100px;">&nbsp;</div>
 
     </div>
 
@@ -292,12 +296,11 @@
     <!-- =========================================================
          KHU VỰC SOẠN CODE HỖ TRỢ
          ========================================================= -->
-
+<div id="control" style="display: none; background:white; position: fixed;top:0px; left; 0px; z-index: 200;height: 100vh;width:100vw; overflow:scroll;">
     <div
         style="
-            margin-top:100px;
             display:grid;
-            grid-template-rows:auto auto auto auto;
+            grid-template-rows:28px 28px 45vh 30px auto;
             min-height:96vh;
         "
     >
@@ -306,12 +309,12 @@
         <div
             style="
                 width:100%;
-                padding:4px;
+                padding-bottom:4px;
                 display:grid;
                 grid-template-columns:1fr 200px;
             "
         >
-            Background Area:
+            PVC web - Background Area:
         </div>
 
 
@@ -384,21 +387,21 @@
         <!-- INPUT2 -->
 
         <textarea
-            class="input"
+            class="input" style="width: 95vw;"
             id="htmlInput2"
             spellcheck="false"
         ></textarea>
 
 
         <textarea
-            class="input hidden"
+            class="input hidden" style="width: 95vw;"
             id="cssInput2"
             spellcheck="false"
         ></textarea>
 
 
         <textarea
-            class="input hidden"
+            class="input hidden" style="width: 95vw;"
             id="jsInput2"
             spellcheck="false"
         ></textarea>
@@ -409,11 +412,16 @@
              ===================================================== -->
 
         <div class="run-area">
-
-            <button id="run">
+        
+            <button id="run" style="width:120px;">
                 Run
             </button>
-
+            <button id="runTest" style="width:120px;">
+                Run test
+            </button>
+            <button id="close" onclick="document.getElementById('control').style.display='none';">
+                Close
+            </button>
 
             <button id="clear">
                 Clear
@@ -425,7 +433,55 @@
         <!-- =====================================================
              COMPONENTS
              ===================================================== -->
+        
+        <script>
+            class Clock
+            {
+                constructor(element)
+                {
+                    this.element = element;
+                    this.seconds = 0;
+                    this.timer = null;
+                }
 
+                startCount()
+                {
+                    // Dừng bộ đếm cũ
+                    clearInterval(this.timer);
+
+                    // Reset
+                    this.seconds = 0;
+                    this.update();
+
+                    // Bắt đầu đếm
+                    this.timer = setInterval(() =>
+                    {
+                        this.seconds++;
+                        this.update();
+                    }, 1000);
+                }
+
+                update()
+                {
+                    const hours = Math.floor(this.seconds / 3600);
+                    const minutes = Math.floor((this.seconds % 3600) / 60);
+                    const seconds = this.seconds % 60;
+
+                    this.element.innerText =
+                        String(hours).padStart(2, '0') + ':' +
+                        String(minutes).padStart(2, '0') + ':' +
+                        String(seconds).padStart(2, '0');
+                }
+
+                stop()
+                {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                }
+            }
+
+            const clock = new Clock(document.getElementById('clock'));
+        </script>
         <div class="component-area">
 
             <button
@@ -532,10 +588,10 @@
             </button>
 
         </div>
-
+        <div>.</div>
 
     </div>
-
+</div>
 
 
 <script>
@@ -1420,6 +1476,123 @@
 
     let typingRunId = 0;
 
+    function runNow()
+    {
+        clock.startCount();
+        document.getElementById('control').style.display='none';
+        document
+            .getElementById('view')
+            .srcdoc = '';
+        window.scrollTo(
+        {
+            top: 0,
+            behavior: 'smooth'
+        });
+
+
+        const runId = ++typingRunId;
+
+
+        /*
+         * Lấy code từ 3 ô Input2
+         */
+
+        const htmlCode =
+            document
+                .getElementById('htmlInput2')
+                .value;
+
+
+        const cssCode =
+            document
+                .getElementById('cssInput2')
+                .value;
+
+
+        const jsCode =
+            document
+                .getElementById('jsInput2')
+                .value;
+
+
+
+        /*
+         * Xóa code cũ ở các ô chính
+         */
+
+        document
+            .getElementById('htmlInput')
+            .value = '';
+
+
+        document
+            .getElementById('cssInput')
+            .value = '';
+
+
+        document
+            .getElementById('jsInput')
+            .value = '';
+
+
+
+        /*
+         * Sau 3 giây mới bắt đầu gõ
+         */
+
+        setTimeout(
+            async function()
+            {
+                if (runId !== typingRunId)
+                    return;
+
+
+                await typeCode(
+                    'htmlInput',
+                    htmlCode,
+                    runId
+                );
+
+
+                if (runId !== typingRunId)
+                    return;
+
+
+                await typeCode(
+                    'cssInput',
+                    cssCode,
+                    runId
+                );
+
+
+                if (runId !== typingRunId)
+                    return;
+
+
+                await typeCode(
+                    'jsInput',
+                    jsCode,
+                    runId
+                );
+
+                setTimeout(function(){showTab('html');},800);
+                clock.stop();                        
+            },
+            3000
+        );
+    }
+
+    
+    document
+        .getElementById('runTest')
+        .addEventListener(
+            'click',
+            function()
+            {
+                document.getElementById('clock').style.display = 'block';
+                runNow();
+            }
+        );
 
     document
         .getElementById('run')
@@ -1427,105 +1600,8 @@
             'click',
             function()
             {
-                document
-                    .getElementById('view')
-                    .srcdoc = '';
-                window.scrollTo(
-                {
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
-
-                const runId = ++typingRunId;
-
-
-                /*
-                 * Lấy code từ 3 ô Input2
-                 */
-
-                const htmlCode =
-                    document
-                        .getElementById('htmlInput2')
-                        .value;
-
-
-                const cssCode =
-                    document
-                        .getElementById('cssInput2')
-                        .value;
-
-
-                const jsCode =
-                    document
-                        .getElementById('jsInput2')
-                        .value;
-
-
-
-                /*
-                 * Xóa code cũ ở các ô chính
-                 */
-
-                document
-                    .getElementById('htmlInput')
-                    .value = '';
-
-
-                document
-                    .getElementById('cssInput')
-                    .value = '';
-
-
-                document
-                    .getElementById('jsInput')
-                    .value = '';
-
-
-
-                /*
-                 * Sau 3 giây mới bắt đầu gõ
-                 */
-
-                setTimeout(
-                    async function()
-                    {
-                        if (runId !== typingRunId)
-                            return;
-
-
-                        await typeCode(
-                            'htmlInput',
-                            htmlCode,
-                            runId
-                        );
-
-
-                        if (runId !== typingRunId)
-                            return;
-
-
-                        await typeCode(
-                            'cssInput',
-                            cssCode,
-                            runId
-                        );
-
-
-                        if (runId !== typingRunId)
-                            return;
-
-
-                        await typeCode(
-                            'jsInput',
-                            jsCode,
-                            runId
-                        );
-
-                        setTimeout(function(){showTab('html');},800);
-                    },
-                    3000
-                );
+                document.getElementById('clock').style.display = 'none';
+                runNow();
             }
         );
 
