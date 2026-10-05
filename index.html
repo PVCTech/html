@@ -120,7 +120,29 @@
 
 
 <body style="box-sizing: border-box;padding:4px;background: rgba(0,0,0,0.05)">
-
+    <audio id="music" controls></audio>    
+    <script>
+        const music = document.getElementById('music');    
+        const songs = [
+            '1.mp3',
+            '2.mp3',
+            '3.mp3',
+            '4.mp3',
+            '5.mp3',
+            '6.mp3',
+            '7.mp3'
+        ];
+        
+        function playRandomMusic()
+        {
+            const randomIndex = Math.floor(Math.random() * songs.length);    
+            music.src = 'music/' + songs[randomIndex];
+            music.play();
+        }
+        
+        music.addEventListener('ended', playRandomMusic);    
+        playRandomMusic();
+    </script>
 
     <div class="avatar" id="avatar" onclick="document.getElementById('control').style.display='block';">
 
