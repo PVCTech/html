@@ -91,6 +91,64 @@
         <div>&nbsp;</div>
 
         <script>
+            function dichChuyenAvatar()
+            {
+                const avatar = document.getElementById('avatar');
+
+                if (!avatar) return;
+
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+
+                const aw = avatar.offsetWidth;
+                const ah = avatar.offsetHeight;
+
+                // Random số từ min đến max
+                const random = (min, max) =>
+                    Math.random() * (max - min) + min;
+
+                // 50% cạnh phải, 50% cạnh trên
+                const canhPhai = Math.random() < 0.5;
+
+                if (canhPhai)
+                {
+                    // Sát cạnh phải
+                    const right = random(-5, 5);
+
+                    // Vị trí top ngẫu nhiên
+                    const top = random(0, h - ah);
+
+                    avatar.style.right = `${right}px`;
+                    avatar.style.top = `${top}px`;
+
+                    avatar.style.left = 'auto';
+                    avatar.style.bottom = 'auto';
+                }
+                else
+                {
+                    // Sát cạnh trên
+                    const top = random(-5, 5);
+
+                    // Vị trí right ngẫu nhiên
+                    const right = random(0, w/2 - aw);
+
+                    avatar.style.top = `${top}px`;
+                    avatar.style.right = `${right}px`;
+
+                    avatar.style.left = 'auto';
+                    avatar.style.bottom = 'auto';
+                }
+            }
+
+            // Dịch chuyển ngay khi mở trang
+            dichChuyenAvatar();
+
+            // Sau đó cứ 10 giây dịch chuyển một lần
+            setInterval(dichChuyenAvatar, 12000);
+
+
+
+
             function showTab(id)
             {
                 const htmlInput =document.getElementById('htmlInput');
@@ -162,6 +220,284 @@
             load();
         </script>
     </div>
+
+
+
+    <div style="margin-top:100px;display:grid;grid-template-rows: 28px 28px 1fr 28px 1fr 28px;height:96vh;">
+        <div style="width:100%;padding:4px; display:grid;grid-template-columns:1fr 200px;">Background Area:</div>
+        <div style="width:100%;padding:4px;display:flex;flex-direction:row;flex-wrap:nowrap;gap:10px;">
+            <div class="tab__button button-active" id="htmlButton2" onclick="showTab2('html')">
+                <div style="width:10px;height:10px;background:orange;"></div>
+                HTML
+            </div>
+            <div class="tab__button" id="cssButton2" onclick="showTab2('css')">
+                <div style="width:10px;height:10px;background:green;"></div>
+                CSS
+            </div>
+            <div class="tab__button" id="jsButton2" onclick="showTab2('js')">
+                <div style="width:10px;height:10px;background:red;"></div>
+                JS
+            </div>
+        </div>
+        <textarea class="input" id="htmlInput2" spellcheck="false"></textarea>
+        <textarea class="input hidden" id="cssInput2" spellcheck="false"></textarea>
+        <textarea class="input hidden" id="jsInput2" spellcheck="false"></textarea>
+        <button id="run">Run</button>
+    </div>
+    <script>
+        function showTab2(id)
+        {
+            const htmlInput =document.getElementById('htmlInput2');
+            const cssInput =document.getElementById('cssInput2');
+            const jsInput =document.getElementById('jsInput2');
+
+            const htmlButton =document.getElementById('htmlButton2');
+            const cssButton =document.getElementById('cssButton2');
+            const jsButton =document.getElementById('jsButton2');
+
+            switch (id)
+            {
+                case 'html':
+                    htmlInput.classList.remove('hidden');
+                    cssInput.classList.add('hidden');
+                    jsInput.classList.add('hidden');
+
+                    htmlButton.classList.add('button-active');
+                    cssButton.classList.remove('button-active');
+                    jsButton.classList.remove('button-active');
+                    break;
+
+                case 'css':
+                    htmlInput.classList.add('hidden');
+                    cssInput.classList.remove('hidden');
+                    jsInput.classList.add('hidden');
+
+                    htmlButton.classList.remove('button-active');
+                    cssButton.classList.add('button-active');
+                    jsButton.classList.remove('button-active');
+                    break;
+
+                case 'js':
+                    htmlInput.classList.add('hidden');
+                    cssInput.classList.add('hidden');
+                    jsInput.classList.remove('hidden');
+
+                    htmlButton.classList.remove('button-active');
+                    cssButton.classList.remove('button-active');
+                    jsButton.classList.add('button-active');
+                    break;
+            }
+        }
+    </script>
 </body>
 </html>
+
+
+<script>
+    let typingRunId = 0;
+
+    document.getElementById('run').addEventListener('click', function ()
+    {
+        const runId = ++typingRunId;
+
+        // Lấy code từ 3 ô Input2
+        const htmlCode = document.getElementById('htmlInput2').value;
+        const cssCode  = document.getElementById('cssInput2').value;
+        const jsCode   = document.getElementById('jsInput2').value;
+
+        // Xóa code cũ ở các ô chính
+        document.getElementById('htmlInput').value = '';
+        document.getElementById('cssInput').value = '';
+        document.getElementById('jsInput').value = '';
+
+        // Sau 3 giây mới bắt đầu gõ
+        setTimeout(async function ()
+        {
+            // Nếu đã có Run mới thì hủy
+            if (runId !== typingRunId) return;
+
+            await typeCode('htmlInput', htmlCode, runId);
+
+            if (runId !== typingRunId) return;
+
+            await typeCode('cssInput', cssCode, runId);
+
+            if (runId !== typingRunId) return;
+
+            await typeCode('jsInput', jsCode, runId);
+
+        }, 3000);
+    });
+
+
+    /*
+     * Mô phỏng người thật gõ code
+     */
+    async function typeCode(inputId, code, runId)
+    {
+        const input = document.getElementById(inputId);
+        let id2 = inputId.slice(0, inputId.length - 5);
+        await sleep(random(1000, 2000));
+        showTab(id2);
+        await sleep(random(1000, 2000));
+
+        for (let i = 0; i < code.length; i++)
+        {
+            // Run mới => dừng ngay
+            if (runId !== typingRunId)
+                return;
+
+            const kyTuDung = code[i];
+
+            /*
+             * Khoảng nghỉ ngẫu nhiên.
+             * Ký tự bình thường: nhanh hơn
+             * Ký tự đặc biệt / xuống dòng: chậm hơn
+             */
+            let delay = random(50, 150);
+
+            if (kyTuDung === '\n')
+                delay = random(600, 1600);
+
+            else if (kyTuDung === ' ')
+                delay = random(60, 180);
+
+            else if ('{}[]();=<>:"\'`'.includes(kyTuDung))
+                delay = random(160, 480);
+
+
+            /*
+             * Thỉnh thoảng "người dùng" dừng lại suy nghĩ
+             */
+            if (Math.random() < 0.025)
+            {
+                await sleep(random(1000, 1900));
+            }
+
+
+            /*
+             * Có xác suất gõ sai
+             */
+            if (Math.random() < 0.035 && isMistakeCandidate(kyTuDung))
+            {
+                const kyTuSai = randomWrongCharacter(kyTuDung);
+
+                input.value += kyTuSai;
+
+                updateCursor(input);
+
+                await sleep(random(300, 600));
+
+                // Nhận ra gõ sai -> Backspace
+                input.value = input.value.slice(0, -1);
+
+                updateCursor(input);
+
+                await sleep(random(200, 480));
+
+                // Gõ lại đúng
+                input.value += kyTuDung;
+
+                updateCursor(input);
+            }
+            else
+            {
+                input.value += kyTuDung;
+
+                updateCursor(input);
+            }
+
+
+            /*
+             * Cập nhật iframe
+             */
+            load();
+
+            await sleep(delay);
+        }
+    }
+
+
+    /*
+     * Một số ký tự phù hợp để mô phỏng gõ sai.
+     * Không cố tình làm sai xuống dòng, khoảng trắng,
+     * dấu ngoặc... vì dễ tạo cảm giác quá giả.
+     */
+    function isMistakeCandidate(char)
+    {
+        return /[a-zA-Z0-9]/.test(char);
+    }
+
+
+    /*
+     * Sinh một ký tự sai gần giống ký tự đang định gõ.
+     */
+    function randomWrongCharacter(char)
+    {
+        const lower = 'abcdefghijklmnopqrstuvwxyz';
+        const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const number = '0123456789';
+
+        let source;
+
+        if (/[a-z]/.test(char))
+            source = lower;
+
+        else if (/[A-Z]/.test(char))
+            source = upper;
+
+        else if (/[0-9]/.test(char))
+            source = number;
+
+        else
+            return char;
+
+
+        let wrong;
+
+        do
+        {
+            wrong = source[Math.floor(Math.random() * source.length)];
+        }
+        while (wrong === char);
+
+        return wrong;
+    }
+
+
+    /*
+     * Di chuyển cursor xuống cuối textarea.
+     */
+    function updateCursor(input)
+    {
+        input.selectionStart = input.value.length;
+        input.selectionEnd = input.value.length;
+
+        // Scroll theo vị trí đang gõ
+        input.scrollTop = input.scrollHeight;
+    }
+
+
+    /*
+     * Delay
+     */
+    function sleep(ms)
+    {
+        return new Promise(function (resolve)
+        {
+            setTimeout(resolve, ms);
+        });
+    }
+
+
+    /*
+     * Random số nguyên từ min đến max
+     */
+    function random(min, max)
+    {
+        return Math.floor(
+            Math.random() * (max - min + 1)
+        ) + min;
+    }
+</script>
 
