@@ -284,43 +284,45 @@
          ========================================================= -->
 <div id="control" style="display: none; background: white; 
     position: fixed; top:0px; left:0px; z-index:200; 
-    height:100vh; width:100%; overflow-y:scroll; padding:4px;">
+    height:100vh; width:100%; overflow-y:scroll; padding:8px;">
     <div style="display:grid; grid-template-rows:28px 28px 45vh 30px auto; min-height:96vh;">
-    <div style="width:100%; padding-bottom:4px;">
-        PVC web - Background Area:
+    <div class="run-area">
+        <button id="clear">
+            Clear
+        </button>
+        <button id="close" onclick="document.getElementById('control').style.display='none';">
+            Close
+        </button>
     </div>
     <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
-            <div class="tab__button button-active" id="htmlButton2" onclick="showTab2('html')">
-                <div style="width:10px; height:10px; background:orange;"></div>
-                HTML
-            </div>
-            <div class="tab__button" id="cssButton2" onclick="showTab2('css')">
-                <div style="width:10px; height:10px; background:green;"></div>
-                CSS
-            </div>
-            <div class="tab__button" id="jsButton2" onclick="showTab2('js')">
-                <div style="width:10px; height:10px; background:red;"></div>
-                JS
-            </div>
+        <div class="tab__button button-active" id="htmlButton2" onclick="showTab2('html')">
+            <div style="width:10px; height:10px; background:orange;"></div>
+            HTML
         </div>
-
-
-        <!-- INPUT2 -->
-        <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false"></textarea>
-        <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false"></textarea>
-        <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
-        <!-- =====================================================
-             RUN + CLEAR
-             ===================================================== -->
-
-        <div class="run-area">        
-            <button id="run" style="width:120px;">
-                Run
-            </button>
-            <button id="runTest" style="width:120px;">
-                Run test
-            </button>
+        <div class="tab__button" id="cssButton2" onclick="showTab2('css')">
+            <div style="width:10px; height:10px; background:green;"></div>
+            CSS
         </div>
+        <div class="tab__button" id="jsButton2" onclick="showTab2('js')">
+            <div style="width:10px; height:10px; background:red;"></div>
+            JS
+        </div>
+    </div>
+
+
+    <!-- INPUT2 -->
+    <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false"></textarea>
+    <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false"></textarea>
+    <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
+
+    <div class="run-area">        
+        <button id="run" style="width:120px;">
+            Run
+        </button>
+        <button id="runTest" style="width:120px;">
+            Run test
+        </button>
+    </div>
         
         <!-- =====================================================
              COMPONENTS
@@ -414,15 +416,7 @@
             <button class="component-button" onclick="addComponent('icon')">
                 + Icon
             </button>
-        </div>
-        <div class="run-area">
-            <button id="clear">
-                Clear
-            </button>
-            <button id="close" onclick="document.getElementById('control').style.display='none';">
-                Close
-            </button>
-        </div>
+        </div>        
         <div>.</div>
 
     </div>
