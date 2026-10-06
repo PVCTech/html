@@ -25,7 +25,7 @@
         </div>
 
         <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
-            <div class="tab__button button-active" id="htmlButton" onclick="showTab('html')">
+            <div class="tab__button tab__button-active" id="htmlButton" onclick="showTab('html')">
                 <div style="width:10px; height:10px; background:orange;"></div>
                 HTML
             </div>
@@ -43,7 +43,7 @@
         <textarea class="input hidden" id="cssInput" spellcheck="false" oninput="load()"></textarea>
         <textarea class="input hidden" id="jsInput" spellcheck="false" oninput="load()"></textarea>
         <div style="width:100%; padding:4px; display:grid; grid-template-columns:1fr 200px;">
-            <div style="text-aling:left;">
+            <div style="text-align:left;">
                 <input type="radio" checked>
                 Live
             </div>
@@ -67,15 +67,15 @@
         height:100vh; width:100%; overflow-y:scroll; padding:8px;">
         <div style="display:grid; grid-template-rows:28px 28px 45vh 30px auto; min-height:96vh;">
             <div class="run-area">         
-                <button id="clear">
+                <button class="button button__shadow" id="clear">
                     Clear
                 </button>
-                <button id="close" onclick="document.getElementById('control').style.display='none';">
+                <button class="button button__shadow" id="close" onclick="document.getElementById('control').style.display='none';">
                     Close
                 </button>
             </div>
             <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
-                <div class="tab__button button-active" id="htmlButton2" onclick="showTab2('html')">
+                <div class="tab__button tab__button-active" id="htmlButton2" onclick="showTab2('html')">
                     <div style="width:10px; height:10px; background:orange;"></div>
                     HTML
                 </div>
@@ -96,59 +96,67 @@
             <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
 
             <div class="run-area">        
-                <button id="run" style="width:120px;">
+                <button id="run" class="button button__shadow" style="width:120px;">
                     Run
                 </button>
-                <button id="runTest" style="width:120px;">
+                <button id="runTest" class="button button__shadow" style="width:120px;">
                     Run test
                 </button>
             </div>
-            <div><audio id="music" controls></audio></div>
+            <div style="display: flex; flex-direction: row;">
+                <button id="music_play" class="button" style="width:80px;" onclick="playRandomMusic();">
+                    Play
+                </button>
+                <audio id="music" controls style="height:30px;"></audio>                
+            </div>
             <script src="index_files/clock.js"></script>
 
             <div style="display: flex; flex-direction: row;">
                 <div class="control">
-                    <select id="fontSizeControl" class="component-button" onchange="changeFontSize()">
+                    <select id="fontSizeControl" class="button" onchange="changeFontSize()">
+                        <option value="xs">Very Small</option>                      
                         <option value="small">Small</option>
                         <option value="medium" selected>Medium</option>
                         <option value="larger">Larger</option>
-                        <option value="larger">Extra larger</option>
+                        <option value="xl">Extra larger</option>
+                        <option value="xxl">Supper larger</option>
                     </select>
                 </div>
 
                 <div class="control">
-                    <select id="speedControl" class="component-button" onchange="changeSpeed_select()">                        
+                    <select id="speedControl" class="button" onchange="changeSpeed_select()">   
+                        <option value="-">Custom</option>                     
                         <option value="slow">Slow</option>
                         <option value="medium" selected>Medium</option>
                         <option value="fast">Fast</option>
                         <option value="veryFast">Very fast</option>                        
                         <option value="supperFast">Supper fast</option>
                     </select>
-                    <input type="text" value="1" class="component-button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:30px;">
+                    <input type="text" value="1" class="button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:30px;">
                 </div>
             </div>
 
             <div class="component-area">
-                <button class="component-button" onclick="addComponent('button')">+ Button</button>
-                <button class="component-button" onclick="addComponent('image')">+ Image</button>
-                <button class="component-button" onclick="addComponent('select')">+ Select</button>
-                <button class="component-button" onclick="addComponent('input')">+ Input</button>
-                <button class="component-button" onclick="addComponent('textarea')">+ Textarea</button>
-                <button class="component-button" onclick="addComponent('checkbox')">+ Checkbox</button>
-                <button class="component-button" onclick="addComponent('radio')">+ Radio</button>
-                <button class="component-button" onclick="addComponent('table')">+ Table</button>
-                <button class="component-button" onclick="addComponent('card')">+ Card</button>
-                <button class="component-button" onclick="addComponent('container')">+ Container</button>
-                <button class="component-button" onclick="addComponent('form')">+ Form</button>
-                <button class="component-button" onclick="addComponent('link')">+ Link</button>
-                <button class="component-button" onclick="addComponent('icon')">+ Icon</button>
+                <button class="button" onclick="addComponent('button')">+ Button</button>
+                <button class="button" onclick="addComponent('image')">+ Image</button>
+                <button class="button" onclick="addComponent('select')">+ Select</button>
+                <button class="button" onclick="addComponent('input')">+ Input</button>
+                <button class="button" onclick="addComponent('textarea')">+ Textarea</button>
+                <button class="button" onclick="addComponent('checkbox')">+ Checkbox</button>
+                <button class="button" onclick="addComponent('radio')">+ Radio</button>
+                <button class="button" onclick="addComponent('table')">+ Table</button>
+                <button class="button" onclick="addComponent('card')">+ Card</button>
+                <button class="button" onclick="addComponent('container')">+ Container</button>
+                <button class="button" onclick="addComponent('form')">+ Form</button>
+                <button class="button" onclick="addComponent('link')">+ Link</button>
+                <button class="button" onclick="addComponent('icon')">+ Icon</button>
             </div>            
         </div>
     </div>
     <script src="index_files/music.js"></script>
     <script src="index_files/avatar.js"></script>
-    <script src="index_files/view.js"></script>
     <script src="index_files/control.js"></script>
+    <script src="index_files/view.js"></script>    
     <script src="index_files/components.js"></script>
     <script src="index_files/run.js"></script>
 </body>

@@ -17,9 +17,9 @@ function showTab(id)
             cssInput.classList.add('hidden');
             jsInput.classList.add('hidden');
 
-            htmlButton.classList.add('button-active');
-            cssButton.classList.remove('button-active');
-            jsButton.classList.remove('button-active');
+            htmlButton.classList.add('tab__button-active');
+            cssButton.classList.remove('tab__button-active');
+            jsButton.classList.remove('tab__button-active');
 
             break;
 
@@ -30,9 +30,9 @@ function showTab(id)
             cssInput.classList.remove('hidden');
             jsInput.classList.add('hidden');
 
-            htmlButton.classList.remove('button-active');
-            cssButton.classList.add('button-active');
-            jsButton.classList.remove('button-active');
+            htmlButton.classList.remove('tab__button-active');
+            cssButton.classList.add('tab__button-active');
+            jsButton.classList.remove('tab__button-active');
 
             break;
 
@@ -43,9 +43,9 @@ function showTab(id)
             cssInput.classList.add('hidden');
             jsInput.classList.remove('hidden');
 
-            htmlButton.classList.remove('button-active');
-            cssButton.classList.remove('button-active');
-            jsButton.classList.add('button-active');
+            htmlButton.classList.remove('tab__button-active');
+            cssButton.classList.remove('tab__button-active');
+            jsButton.classList.add('tab__button-active');
 
             break;
     }
