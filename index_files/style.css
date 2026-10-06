@@ -158,9 +158,10 @@
             flex-direction: row;
             align-items: center;
             justify-content: flex-end;
-            gap: 24px;
+            gap: 12px;
             padding: 6px;
-            margin-bottom: 16px;
+            padding-right: 20px;
+            margin-bottom: 20px;
         }
 
 

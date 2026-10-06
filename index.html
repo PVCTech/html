@@ -68,7 +68,7 @@
          ========================================================= -->
     <div id="control" style="display: none; background: white; 
         position: fixed; top:0px; left:0px; z-index:200; 
-        height:100vh; width:100%; overflow-y:scroll; padding:8px;">
+        height:100vh; width:100%; overflow-y:scroll; padding:8px;box-sizing: border-box;">
         <div style="display:grid; grid-template-rows:28px 28px 45vh 30px auto; min-height:96vh;">
             <div class="run-area">         
                 <button class="button button__shadow" id="clear">
@@ -77,6 +77,7 @@
                 <button class="button button__shadow" id="close" onclick="document.getElementById('control').style.display='none';">
                     Close
                 </button>
+                <div style="width: 12px;">&nbsp;</div>
             </div>
             <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
                 <div class="tab__button tab__button-active" id="htmlButton2" onclick="showTab2('html')">
@@ -100,17 +101,19 @@
             <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
 
             <div class="run-area">        
-                <button id="run" class="button button__shadow" style="width:120px;">
-                    Run
-                </button>
-                <button id="runTest" class="button button__shadow" style="width:120px;">
-                    Run test
-                </button>
-            </div>
-            <div style="display: flex; flex-direction: row;">
                 <button id="music_play" class="button" style="width:80px;" onclick="playRandomMusic();">
                     Play
                 </button>
+
+                <button id="run" class="button button__shadow" style="width:100px;">
+                    Run
+                </button>
+                <button id="runTest" class="button button__shadow" style="width:100px;">
+                    Run test
+                </button>
+                <div style="width: 12px;">&nbsp;</div>
+            </div>
+            <div style="display: flex; flex-direction: row;">                
                 <audio id="music" controls style="height:30px;"></audio>                
             </div>
             <script src="index_files/clock.js"></script>
