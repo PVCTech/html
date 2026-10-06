@@ -238,15 +238,15 @@ document.getElementById('clear').addEventListener('click', clearInput2);
 function changeFontSize()
 {
     const fontSize = document.getElementById('fontSizeControl').value;
-    const inputs = [
-        document.getElementById('htmlInput'),
-        document.getElementById('cssInput'),
-        document.getElementById('jsInput')
+    const screens = [
+        document.getElementById('htmlInput_screen'),
+        document.getElementById('cssInput_screen'),
+        document.getElementById('jsInput_screen')
     ];
 
-    inputs.forEach(function(input)
+    screens.forEach(function(screen)
     {
-        input.style.fontSize = APP.code.textSizes[fontSize];
+        screen.style.fontSize = APP.code.textSizes[fontSize];
     });
 }
 
