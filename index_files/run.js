@@ -1,29 +1,23 @@
 let typingRunId = 0;
 
-function runNow()
+async function runNow()
 {
     clock.startCount();
     document.getElementById('control').style.display='none';
-    document
-        .getElementById('view')
-        .srcdoc = '';
-    window.scrollTo(
-    {
-        top: 0,
-        behavior: 'smooth'
-    });
+    document.getElementById('view').srcdoc = '';
+    window.scrollTo({top: 0, behavior: 'smooth'});
 
     const runId = ++typingRunId;
 
-    const htmlCode = document.getElementById('htmlInput2').value;
-    const cssCode = document.getElementById('cssInput2').value;
-    const jsCode = document.getElementById('jsInput2').value;
+    const htmlCode = document.getElementById('htmlInput2').value.replace(/ {4}/g, '\t');
+    const cssCode = document.getElementById('cssInput2').value.replace(/ {4}/g, '\t');
+    const jsCode = document.getElementById('jsInput2').value.replace(/ {4}/g, '\t');
 
     document.getElementById('htmlInput').value = '';
     document.getElementById('cssInput').value = '';
     document.getElementById('jsInput').value = '';
     renderAllCodeScreens();
-
+    await thinking();
     setTimeout(
         async function()
         {
@@ -44,27 +38,17 @@ function runNow()
 }
 
 
-document
-    .getElementById('runTest')
-    .addEventListener(
-        'click',
-        function()
-        {
-            document.getElementById('clock').style.display = 'block';
-            runNow();
-        }
-    );
+document.getElementById('runTest').addEventListener('click',function()
+{
+    document.getElementById('clock').style.display = 'block';
+    runNow();
+});
 
-document
-    .getElementById('run')
-    .addEventListener(
-        'click',
-        function()
-        {
-            document.getElementById('clock').style.display = 'none';
-            runNow();
-        }
-    );
+document.getElementById('run').addEventListener('click',function()
+{
+    document.getElementById('clock').style.display = 'none';
+    runNow();
+});
 
 
 async function typeCode(inputId, code, runId)
@@ -73,10 +57,10 @@ async function typeCode(inputId, code, runId)
     const input = document.getElementById(inputId);    
     let id2 = inputId.slice(0, inputId.length - 5);
 
-    thinking();
+    await thinking();
     showTab(id2);
     
-    thinking();
+    await thinking();
     for (let i = 0; i < code.length; i++)
     {
         if (runId !== typingRunId) return;
@@ -91,6 +75,10 @@ async function typeCode(inputId, code, runId)
         {
             delay = random(APP.code.speed.space.min, APP.code.speed.space.max);
         }
+        else if (kyTuDung === '\t')
+        {
+            delay = random(APP.code.speed.tab.min, APP.code.speed.tab.max);
+        }
         else if ('{}[]();=<>:"\'`'.includes(kyTuDung))
         {
             delay = random(APP.code.speed.specialChar.min, APP.code.speed.specialChar.max);
@@ -98,7 +86,7 @@ async function typeCode(inputId, code, runId)
 
         if (Math.random() < 0.025)
         {
-            thinking();
+            await thinking();
         }
 
 

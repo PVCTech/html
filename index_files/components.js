@@ -2,6 +2,23 @@
        COMPONENT BUILDER
        ========================================================= */
 
+    function insertTab()
+    {
+        insertEditorText('    ');
+    }
+
+    function insertEditorText(text)
+    {
+        const input = document.querySelector('#control textarea:not(.hidden)');
+        if (!input) return;
+
+        const start = input.selectionStart;
+        const end = input.selectionEnd;
+        input.setRangeText(text, start, end, 'end');
+        input.focus();
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
     function appendCode(id, code)
     {
         const input = document.getElementById(id);

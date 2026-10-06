@@ -21,7 +21,7 @@ const APP =
             },
             thinking:
             {
-                min: 600,
+                min: 800,
                 max: 2000
             },
             errorFix:
@@ -43,8 +43,12 @@ const APP =
             {
                 min: 160,
                 max: 480
+            },
+            tab:
+            {
+                min: 160,
+                max: 480
             }
-
         },
         speed:
         {
@@ -100,8 +104,12 @@ const APP =
             {
                 min: 160,
                 max: 480
+            },
+            tab:
+            {
+                min: 160,
+                max: 480
             }
-
         }
     }
 };

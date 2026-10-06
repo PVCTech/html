@@ -140,6 +140,17 @@
                 </div>
             </div>
 
+            <div class="editor-key-row" aria-label="Editor keys">
+                <button class="button editor-key-tab" onclick="insertTab()" aria-label="Insert tab">↦ Tab</button>
+                <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
+                <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
+                <button class="button editor-key" onclick="insertEditorText('{')" aria-label="Insert opening brace">{</button>
+                <button class="button editor-key" onclick="insertEditorText('}')" aria-label="Insert closing brace">}</button>
+                <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
+                <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>
+                <button class="button editor-key" onclick="insertEditorText(';')" aria-label="Insert semicolon">;</button>
+            </div>
+
             <div class="component-area">
                 <button class="button" onclick="addComponent('button')">+ Button</button>
                 <button class="button" onclick="addComponent('image')">+ Image</button>

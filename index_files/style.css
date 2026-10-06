@@ -103,6 +103,28 @@
             margin-top: 24px;
         }
 
+        .editor-key-row
+        {
+            display: flex;
+            gap: 6px;
+            padding: 6px 0;
+            overflow-x: auto;
+            width: 95%;
+        }
+
+        .editor-key
+        {
+            flex: 0 0 40px;
+            padding: 0;
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+        .editor-key-tab
+        {
+            flex: 0 0 72px;
+        }
+
 
         .button
         {
