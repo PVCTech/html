@@ -60,7 +60,7 @@ function renderAllCodeScreens()
     });
 }
 
-function renderCodeScreen(language, code, showCursor)
+function renderCodeScreen(language, code, showCursor, resetHorizontalScroll)
 {
     const screen = document.getElementById(language + 'Input_screen');
     if (!screen) return;
@@ -119,7 +119,7 @@ function renderCodeScreen(language, code, showCursor)
     if (showCursor) output += '<span class="typing-cursor" aria-hidden="true"></span>';
     screen.innerHTML = output || (showCursor ? '<span class="typing-cursor" aria-hidden="true"></span>' : '');
     screen.scrollTop = screen.scrollHeight;
-    screen.scrollLeft = screen.scrollWidth;
+    if (resetHorizontalScroll) screen.scrollLeft = 0;
 }
 
 function escapeCodeHTML(text)

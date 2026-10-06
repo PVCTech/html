@@ -28,7 +28,8 @@
             padding: 10px;
             color: #20252b;
             font-family: 'Cascadia Code', Consolas, 'Liberation Mono', monospace;
-            white-space: pre;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
             tab-size: 4;
         }
 

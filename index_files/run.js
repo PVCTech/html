@@ -167,7 +167,7 @@ function updateCursor(input)
     input.selectionStart = input.value.length;
     input.selectionEnd = input.value.length;
     input.scrollTop = input.scrollHeight;
-    renderCodeScreen(input.id.replace('Input', ''), input.value, true);
+    renderCodeScreen(input.id.replace('Input', ''), input.value, true, input.value.endsWith('\n'));
 }
 
 function sleep(ms)
