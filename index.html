@@ -108,13 +108,23 @@
 
             <div style="display: flex; flex-direction: row;">
                 <div class="control">
-                    <label for="fontSizeControl">Font size:</label>
-                    <select id="fontSizeControl" onchange="changeFontSize()">
+                    <select id="fontSizeControl" class="component-button" onchange="changeFontSize()">
                         <option value="small">Small</option>
                         <option value="medium" selected>Medium</option>
                         <option value="larger">Larger</option>
                         <option value="larger">Extra larger</option>
                     </select>
+                </div>
+
+                <div class="control">
+                    <select id="speedControl" class="component-button" onchange="changeSpeed_select()">                        
+                        <option value="slow">Slow</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="fast">Fast</option>
+                        <option value="veryFast">Very fast</option>                        
+                        <option value="supperFast">Supper fast</option>
+                    </select>
+                    <input type="text" value="1" class="component-button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:30px;">
                 </div>
             </div>
 
@@ -140,5 +150,6 @@
     <script src="index_files/view.js"></script>
     <script src="index_files/control.js"></script>
     <script src="index_files/components.js"></script>
+    <script src="index_files/run.js"></script>
 </body>
 </html>

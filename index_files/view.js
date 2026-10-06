@@ -51,53 +51,28 @@ function showTab(id)
     }
 }
 
-
-
-/* =========================================================
-LOAD LIVE PREVIEW
-========================================================= */
-
 function load()
 {
     const html = document.getElementById('htmlInput').value;
-
     const css = document.getElementById('cssInput').value;
-
     const js = document.getElementById('jsInput').value;
-
 
     const code = `
     <!DOCTYPE html>
-
     <html>
-
         <head>
-
             <style>
-
                 ${css}
-
             </style>
-
         </head>
-
-
         <body>
-
             ${html}
-
-
             <script>
-
                 ${js.replace(/<\/script/gi, '<\\/script')}
-
             <\/script>
-
         </body>
-
     </html>
     `;
-
 
     document.getElementById('view').srcdoc = code;
 }
@@ -117,22 +92,13 @@ function saveInput(input)
 function loadSavedInputs()
 {
     const inputs = document.querySelectorAll('textarea');
-
-
     inputs.forEach(function(input)
     {
         const saved = localStorage.getItem(input.id);
-
-
         if (saved !== null)
         {
             input.value = saved;
         }
-
-
-        /*
-        * Lưu khi người dùng gõ.
-        */
         input.addEventListener(
             'keyup',
             function()
@@ -140,12 +106,6 @@ function loadSavedInputs()
                 saveInput(input);
             }
         );
-
-
-        /*
-        * Lưu luôn khi paste / input bằng cách khác.
-        * Không ảnh hưởng yêu cầu onkeyup.
-        */
         input.addEventListener(
             'input',
             function()
