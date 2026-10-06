@@ -17,4 +17,4 @@ function playRandomMusic()
 }
 
 music.addEventListener('ended', playRandomMusic);    
-playRandomMusic();
+setTimeout(function(){playRandomMusic();},2000);
