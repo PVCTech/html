@@ -22,6 +22,7 @@ function runNow()
     document.getElementById('htmlInput').value = '';
     document.getElementById('cssInput').value = '';
     document.getElementById('jsInput').value = '';
+    renderAllCodeScreens();
 
     setTimeout(
         async function()
@@ -178,6 +179,7 @@ function updateCursor(input)
     input.selectionStart = input.value.length;
     input.selectionEnd = input.value.length;
     input.scrollTop = input.scrollHeight;
+    renderCodeScreen(input.id.replace('Input', ''), input.value, true);
 }
 
 function sleep(ms)
@@ -200,3 +202,4 @@ function random(min, max)
 
 loadSavedInputs();
 load();
+renderAllCodeScreens();

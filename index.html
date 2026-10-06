@@ -38,10 +38,14 @@
                 JS
             </div>
         </div>
+        <div class="input code-screen" id="htmlInput_screen"></div>
+        <div class="input code-screen hidden" id="cssInput_screen"></div>
+        <div class="input code-screen hidden" id="jsInput_screen"></div>
 
-        <textarea class="input" id="htmlInput" spellcheck="false" oninput="load()"></textarea>
+        <textarea class="input hidden" id="htmlInput" spellcheck="false" oninput="load()"></textarea>
         <textarea class="input hidden" id="cssInput" spellcheck="false" oninput="load()"></textarea>
         <textarea class="input hidden" id="jsInput" spellcheck="false" oninput="load()"></textarea>
+
         <div style="width:100%; padding:4px; display:grid; grid-template-columns:1fr 200px;">
             <div style="text-align:left;">
                 <input type="radio" checked>

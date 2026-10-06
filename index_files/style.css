@@ -21,6 +21,42 @@
             background: white;
         }
 
+        .code-screen
+        {
+            display: block;
+            overflow: auto;
+            padding: 10px;
+            color: #20252b;
+            font: 14px/1.55 'Courier New', monospace;
+            white-space: pre;
+            tab-size: 4;
+        }
+
+        .code-tag { color: #c2410c; }
+        .code-attribute { color: #0369a1; }
+        .code-keyword { color: #7c3aed; }
+        .code-string { color: #15803d; }
+        .code-comment { color: #7c858d; font-style: italic; }
+        .code-number { color: #b45309; }
+        .code-function { color: #be185d; }
+        .code-punctuation { color: #475569; }
+
+        .typing-cursor
+        {
+            display: inline-block;
+            width: 2px;
+            height: 1.15em;
+            margin-left: 1px;
+            vertical-align: -0.2em;
+            background: #17212b;
+            animation: cursor-blink 1s steps(2, start) infinite;
+        }
+
+        @keyframes cursor-blink
+        {
+            to { visibility: hidden; }
+        }
+
 
         .tab__button
         {
