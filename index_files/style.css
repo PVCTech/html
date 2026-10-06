@@ -81,6 +81,13 @@
             border-right: 0.6px solid rgba(0,0,0,0.6);
         }
 
+        .preview-tabs
+        {
+            box-sizing: border-box;
+            min-width: 0;
+            overflow-x: auto;
+        }
+
 
         .hidden
         {
@@ -153,7 +160,8 @@
 
         .run-area
         {
-            width:96%;
+            box-sizing: border-box;
+            width:100%;
             display: flex;
             flex-direction: row;
             align-items: center;
