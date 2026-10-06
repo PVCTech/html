@@ -17,4 +17,4 @@ function playRandomMusic()
 }
 
 music.addEventListener('ended', playRandomMusic);    
-setTimeout(function(){playRandomMusic();},2000);
+//setTimeout(function(){playRandomMusic();},2000); (gây lỗi tự phát dưới nền)
