@@ -6,6 +6,15 @@ async function runNow()
     document.getElementById('control').style.display='none';
     document.getElementById('view').srcdoc = '';
     window.scrollTo({top: 0, behavior: 'smooth'});
+    let input_caption = document.getElementById('input_caption');
+    if (input_caption)
+    {
+        let cp = input_caption.value;
+        if (cp !== '')
+        {
+            document.getElementById('screen_view_caption').innerHTML = cp;
+        }
+    }
 
     const runId = ++typingRunId;
 
@@ -30,7 +39,15 @@ async function runNow()
             if (runId !== typingRunId) return;
             await typeCode('jsInput', jsCode, runId);
 
-            setTimeout(function(){showTab('html');},1200);
+            document.getElementById('cssInput_screen').scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('jsInput_screen').scrollTo({top: 0, behavior: 'smooth'});
+            setTimeout(function()
+            {
+                showTab('html');
+                document.getElementById('htmlInput_screen').scrollTo({top: 0, behavior: 'smooth'});
+            },1200);
+            
+            
 
             let css = document.getElementById('cssInput').value;
             let js = document.getElementById('jsInput').value;
