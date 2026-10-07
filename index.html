@@ -18,8 +18,8 @@
         </div>
     </div>
 
-    <div style="display:grid; grid-template-rows: 28px 28px 1fr 28px 1fr 28px; height:90vh;
-        padding: 28px 12px 0px 12px;">
+    <div style="display:grid; grid-template-rows: 24px 24px 30vh 28px auto 28px auto; height:90vh;
+        padding: 40px 12px 0px 12px;">
         <div style="width:100%; padding:4px;display: flex; flex-direction:row; gap:12px;">
             <div>PVC Free web</div>
             <div id="clock">00:00:00</div>
@@ -71,7 +71,7 @@
         position: fixed; top:0px; left:0px; z-index:200; 
         height:100vh; width:100%; overflow-y:scroll; padding:8px;box-sizing: border-box;">
         <div style="padding-top:12px; display:grid; grid-template-columns:minmax(0, 1fr); 
-            grid-template-rows:28px 28px 45vh 30px auto; min-height:96vh; min-width:0;">
+            grid-template-rows:24px 24px 45vh 30px auto; min-height:96vh; min-width:0;">
             <div style="position: fixed; top:4px; left: 4px; padding: 6px;background-color: white;" onclick="APP.control.toggleShortKeyPannel();">
                 ☰
             </div>
@@ -138,9 +138,10 @@
             <div style="display: flex; flex-direction: row;">
                 <div class="control">
                     <select id="fontSizeControl" class="button" onchange="changeFontSize()">
+                        <option value="xxs">Supper Small</option> 
                         <option value="xs">Very Small</option>                      
-                        <option value="small">Small</option>
-                        <option value="medium" selected>Medium</option>
+                        <option value="small" selected>Small</option>
+                        <option value="medium">Medium</option>
                         <option value="larger">Larger</option>
                         <option value="xl">Extra larger</option>
                         <option value="xxl">Supper larger</option>

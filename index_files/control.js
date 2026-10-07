@@ -4,6 +4,7 @@ const APP =
     {
         textSizes:
         {
+            xxs: '10px',
             xs: '12px',
             small: '14px',
             medium: '16px',
