@@ -65,7 +65,7 @@
             flex-direction: row;
             flex-wrap: nowrap;
             gap: 10px;
-            width: 100px;
+            width: 80px;
             border-top: solid 0.2px rgba(0,0,0,0.2);
             align-items: center;
             border-radius: 4px 4px 0px 0px;
