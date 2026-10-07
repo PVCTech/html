@@ -51,6 +51,12 @@ function showTab(id)
     }
 }
 
+async function reviewTab(id)
+{
+    await sleep(APP.code.speed.reviewTab);
+    showTab(id);
+}
+
 function renderAllCodeScreens()
 {
     ['html', 'css', 'js'].forEach(function(language)

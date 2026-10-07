@@ -48,7 +48,8 @@ const APP =
             {
                 min: 160,
                 max: 480
-            }
+            },
+            reviewTab: 3000
         },
         speed:
         {
@@ -109,7 +110,53 @@ const APP =
             {
                 min: 160,
                 max: 480
+            },
+            reviewTab: 3000
+        }
+    },
+    control:
+    {
+        shortKey:
+        {
+            show: false
+        },
+        toggleShortKeyPannel: function()
+        {
+            if (APP.control.shortKey.show)
+            {
+                APP.control.shortKey.show = false;
+                document.getElementById('control_shortKey').classList.add('hidden');
             }
+            else
+            {
+                document.getElementById('control_shortKey').classList.remove('hidden');
+                APP.control.shortKey.show = true;
+            }
+        },
+        backSpace: function()
+        {
+            const input = document.querySelector('#control textarea:not(.hidden)');
+            if (!input) return;
+
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            if (start === 0 && end === 0) return;
+
+            let deleteStart = start;
+            if (start === end)
+            {
+                deleteStart = start - 1;
+                const currentCodeUnit = input.value.charCodeAt(deleteStart);
+                const previousCodeUnit = input.value.charCodeAt(deleteStart - 1);
+                if (currentCodeUnit >= 0xDC00 && currentCodeUnit <= 0xDFFF
+                    && previousCodeUnit >= 0xD800 && previousCodeUnit <= 0xDBFF)
+                {
+                    deleteStart--;
+                }
+            }
+
+            input.setRangeText('', deleteStart, end, 'start');
+            input.dispatchEvent(new Event('input', { bubbles: true }));
         }
     }
 };

@@ -46,9 +46,9 @@
         <textarea class="input hidden" id="cssInput" spellcheck="false" oninput="load()"></textarea>
         <textarea class="input hidden" id="jsInput" spellcheck="false" oninput="load()"></textarea>
 
-        <div style="width:100%; padding:4px; display:grid; grid-template-columns:1fr 200px;">
+        <div style="width:100%; padding:4px; display:grid; grid-template-columns:1fr 200px;opacity:0.6">
             <div style="text-align:left;">
-                <input type="radio" checked>
+                <input type="radio" checked style="opacity:0.4;">
                 Live
             </div>
             <div style="display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
@@ -69,7 +69,25 @@
     <div id="control" style="display: none; background: white; 
         position: fixed; top:0px; left:0px; z-index:200; 
         height:100vh; width:100%; overflow-y:scroll; padding:8px;box-sizing: border-box;">
-        <div style="padding-top:12px; display:grid; grid-template-columns:minmax(0, 1fr); grid-template-rows:28px 28px 45vh 30px auto; min-height:96vh; min-width:0;">
+        <div style="padding-top:12px; display:grid; grid-template-columns:minmax(0, 1fr); 
+            grid-template-rows:28px 28px 45vh 30px auto; min-height:96vh; min-width:0;">
+            <div style="position: fixed; top:4px; left: 4px; padding: 6px;background-color: white;" onclick="APP.control.toggleShortKeyPannel();">
+                ☰
+            </div>
+            <div class="editor-key-row hidden" aria-label="Editor keys" id="control_shortKey">
+                
+                <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
+                <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
+                <button class="button editor-key" onclick="insertEditorText('{')" aria-label="Insert opening brace">{</button>
+                <button class="button editor-key" onclick="insertEditorText('}')" aria-label="Insert closing brace">}</button>
+                <button class="button editor-key-tab" style="grid-column: 5 / span 2;" onclick="APP.control.backSpace()" aria-label="Backspace">⌫ Bksp</button>
+
+                <button class="button editor-key-tab" style="grid-column: 1 / span 2;" onclick="insertTab()" aria-label="Insert tab">↦ Tab</button>                
+                <button class="button editor-key" onclick="insertEditorText(';')" aria-label="Insert semicolon">;</button>
+                <button class="button editor-key" onclick="insertEditorText('/')" aria-label="Insert semicolon">/</button>
+                <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
+                <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>                
+            </div>
             <div class="run-area">         
                 <button class="button button__shadow" id="clear">
                     Clear
@@ -139,18 +157,7 @@
                     </select>
                     <input type="text" value="1" class="button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:30px;">
                 </div>
-            </div>
-
-            <div class="editor-key-row" aria-label="Editor keys">
-                <button class="button editor-key-tab" onclick="insertTab()" aria-label="Insert tab">↦ Tab</button>
-                <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
-                <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
-                <button class="button editor-key" onclick="insertEditorText('{')" aria-label="Insert opening brace">{</button>
-                <button class="button editor-key" onclick="insertEditorText('}')" aria-label="Insert closing brace">}</button>
-                <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
-                <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>
-                <button class="button editor-key" onclick="insertEditorText(';')" aria-label="Insert semicolon">;</button>
-            </div>
+            </div>            
 
             <div class="component-area">
                 <button class="button" onclick="addComponent('button')">+ Button</button>

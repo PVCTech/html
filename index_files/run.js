@@ -30,7 +30,50 @@ async function runNow()
             if (runId !== typingRunId) return;
             await typeCode('jsInput', jsCode, runId);
 
-            setTimeout(function(){showTab('html');},800);
+            setTimeout(function(){showTab('html');},1200);
+
+            let css = document.getElementById('cssInput').value;
+            let js = document.getElementById('jsInput').value;
+            for (let i=0; i<10; i++)
+            {
+                if (css.length > 0 && js.length == 0)
+                {
+                    if (i%2 == 0)
+                    {
+                        await reviewTab('css');                        
+                    }
+                    else
+                    {
+                        await reviewTab('html');
+                    }
+                }
+                else if (css.length == 0 && js.length > 0)
+                {
+                    if (i%2 == 1)
+                    {
+                        await reviewTab('js');
+                    }
+                    else
+                    {
+                        await reviewTab('html');
+                    }
+                }
+                else if (css.length > 0 && js.length > 0)
+                {
+                    if (i%3 == 0)
+                    {
+                        await reviewTab('css');                        
+                    }
+                    else if (i%3 == 1)
+                    {
+                        await reviewTab('js');
+                    }
+                    else
+                    {
+                        await reviewTab('html');
+                    }
+                }            
+            }
             clock.stop();                        
         },
         APP.code.speed.delayStartup
@@ -130,36 +173,43 @@ function isMistakeCandidate(char)
 
 function randomWrongCharacter(char)
 {
-    const lower = 'abcdefghijklmnopqrstuvwxyz';
-    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const number = '0123456789';
-    let source;
+    const rows = [
+        { keys: '1234567890', offset: 0 },
+        { keys: 'qwertyuiop', offset: 0 },
+        { keys: 'asdfghjkl', offset: 0.25 },
+        { keys: 'zxcvbnm', offset: 0.75 }
+    ];
+    const normalizedChar = char.toLowerCase();
+    let position;
 
-    if (/[a-z]/.test(char))
+    for (let row = 0; row < rows.length; row++)
     {
-        source = lower;
-    }
-    else if (/[A-Z]/.test(char))
-    {
-        source = upper;
-    }
-    else if (/[0-9]/.test(char))
-    {
-        source = number;
-    }
-    else
-    {
-        return char;
+        const col = rows[row].keys.indexOf(normalizedChar);
+        if (col !== -1)
+        {
+            position = { row, col: col + rows[row].offset };
+            break;
+        }
     }
 
+    if (!position) return char;
 
-    let wrong;
-    do
+    const nearbyKeys = [];
+    for (let row = 0; row < rows.length; row++)
     {
-        wrong = source[Math.floor(Math.random() * source.length)];
+        for (let col = 0; col < rows[row].keys.length; col++)
+        {
+            const dx = col + rows[row].offset - position.col;
+            const dy = row - position.row;
+            if (dx * dx + dy * dy <= 4 && (dx !== 0 || dy !== 0))
+            {
+                nearbyKeys.push(rows[row].keys[col]);
+            }
+        }
     }
-    while (wrong === char);
-    return wrong;
+
+    const wrong = nearbyKeys[Math.floor(Math.random() * nearbyKeys.length)];
+    return char === normalizedChar ? wrong : wrong.toUpperCase();
 }
 
 function updateCursor(input)
