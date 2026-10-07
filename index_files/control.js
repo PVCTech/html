@@ -185,6 +185,9 @@ function changeSpeed_select()
         case 'supperFast':
             heSo = 0.4;
             break;
+        case 'ssFast':
+            heSo = 0.1;
+            break;
         default:
             break;
     }
@@ -213,6 +216,9 @@ function changeSpeed_text()
             break;
         case 0.4:
             selectValue = 'supperFast';
+            break;
+        case 0.1:
+            selectValue = 'ssFast';
             break;
         default:
             selectValue = '-';
@@ -287,6 +293,7 @@ function clearInput2()
         }
     });
     showTab2('html');
+    document.getElementById("input_caption").value = `<span style="font-weight: bold;">HTML code</span>`;
 }
 
 document.getElementById('clear').addEventListener('click', clearInput2);
