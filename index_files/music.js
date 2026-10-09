@@ -6,7 +6,10 @@ const songs = [
     '4.mp3',
     '5.mp3',
     '6.mp3',
-    '7.mp3'
+    '7.mp3',
+    '8.mp3',
+    '9.mp3',
+    '10.mp3'
 ];
 
 function playRandomMusic()
