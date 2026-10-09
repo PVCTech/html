@@ -151,6 +151,8 @@ function load()
             <style>
                 ${css}
             </style>
+
+            <script src="index_files/alert.js"></script>
         </head>
         <body>
             ${html}
