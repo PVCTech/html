@@ -16,7 +16,7 @@ style.textContent = `
     {
         background:white;
         padding:20px;
-        border-radius:8px;
+        border-radius:0px;
         min-width:220px;
         text-align:center;
     }
