@@ -77,24 +77,24 @@
         position: fixed; top:0px; left:0px; z-index:200; 
         height:100vh; width:100%; overflow-y:scroll; padding:8px;box-sizing: border-box;">
         <div style="padding-top:12px; display:grid; grid-template-columns:minmax(0, 1fr); 
-            grid-template-rows:24px 24px 30vh 30px auto; min-height:96vh; min-width:0;">
+            grid-template-rows:32px 24px 30vh auto auto; min-height:96vh; min-width:0;">
             <div class="run-area">                
                 <div id="input_caption_div" style="position: fixed; top:0px; left: 0px; display: none;width:95vw;">
                     <textarea class="input"
                         id="input_caption"><span style="font-weight: bold;">HTML code</span></textarea><br>
                     <button onclick="document.getElementById('input_caption_div').style.display='none';">x</button>
                 </div>
-                <button class="button button__shadow" id="caption" onclick="document.getElementById('input_caption_div').style.display='block';">
+                <button class="button" id="caption" onclick="document.getElementById('input_caption_div').style.display='block';">
                     Caption
                 </button>
-                <button class="button button__shadow" id="clear">
+                <button class="button" id="clear">
                     Clear
                 </button>
-                <button class="button button__shadow" id="close" onclick="document.getElementById('control').style.display='none';">
+                <button class="button" id="close" onclick="document.getElementById('control').style.display='none';">
                     Close
                 </button>
             </div>
-            
+
             <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
                 <div class="tab__button tab__button-active" id="htmlButton2" onclick="showTab2('html')">
                     <div style="width:10px; height:10px; background:orange;"></div>
@@ -127,50 +127,52 @@
                 <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
                 <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>                                        
             </div>
-
-            <div class="run-area">        
-                <button id="music_play" class="button" style="width:80px;" onclick="playRandomMusic();">
-                    Play
-                </button>
-
-                <button id="run" class="button button__shadow" style="width:100px;">
-                    Run
-                </button>
-                <button id="runTest" class="button button__shadow" style="width:100px;">
-                    Run test
-                </button>
-            </div>
-            <div style="display: flex; flex-direction: row;">                
-                <audio id="music" controls style="height:30px;"></audio>                
-            </div>
-            <script src="index_files/clock.js"></script>
-
-            <div style="display: flex; flex-direction: row;">
-                <div class="control">
-                    <select id="fontSizeControl" class="button" onchange="changeFontSize()">
-                        <option value="xxs">Supper Small</option> 
-                        <option value="xs">Very Small</option>                      
-                        <option value="small" selected>Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="larger">Larger</option>
-                        <option value="xl">Extra larger</option>
-                        <option value="xxl">Supper larger</option>
-                    </select>
+            
+            <div class="component-area">
+                <div style="display:flex; flex-direction:row;">                
+                    <audio id="music" controls style="height:30px;"></audio>                
                 </div>
+                <script src="index_files/clock.js"></script>
 
-                <div class="control">
-                    <select id="speedControl" class="button" onchange="changeSpeed_select()">   
-                        <option value="-">Custom</option>                     
-                        <option value="slow">Slow</option>
-                        <option value="medium" selected>Medium</option>
-                        <option value="fast">Fast</option>
-                        <option value="veryFast">Very fast</option>                        
-                        <option value="supperFast">Supper fast</option>
-                        <option value="ssFast">SS fast</option>
-                    </select>
-                    <input type="text" value="1" class="button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:30px;">
+                <div style="display:flex; flex-direction:row;">
+                    <div class="control">
+                        <select id="fontSizeControl" class="button" onchange="changeFontSize()">
+                            <option value="xxs">Supper Small</option> 
+                            <option value="xs">Very Small</option>                      
+                            <option value="small" selected>Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="larger">Larger</option>
+                            <option value="xl">Extra larger</option>
+                            <option value="xxl">Supper larger</option>
+                        </select>
+                    </div>
+
+                    <div class="control">
+                        <select id="speedControl" class="button" onchange="changeSpeed_select()">   
+                            <option value="-">Custom</option>                     
+                            <option value="slow">Slow</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="fast">Fast</option>
+                            <option value="veryFast">Very fast</option>                        
+                            <option value="supperFast">Supper fast</option>
+                            <option value="ssFast">SS fast</option>
+                        </select>
+                        <input type="text" value="1" class="button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:30px;">
+                    </div>
                 </div>
-            </div>            
+                <div class="run-area">        
+                    <button id="music_play" class="button button__shadow"" style="width:80px;" onclick="playRandomMusic();">
+                        Play
+                    </button>
+
+                    <button id="run" class="button button__shadow" style="width:100px;">
+                        Run
+                    </button>
+                    <button id="runTest" class="button button__shadow" style="width:100px;">
+                        Run test
+                    </button>
+                </div>
+            </div>       
 
             <div class="component-area">
                 <button class="button" onclick="addComponent('button')">+ Button</button>
@@ -207,7 +209,12 @@
             <textarea class="input" style="width: 95%;" id="htmlInput3" spellcheck="false"></textarea>
             <textarea class="input hidden" style="width: 95%;" id="cssInput3" spellcheck="false"></textarea>
             <textarea class="input hidden" style="width: 95%;" id="jsInput3" spellcheck="false"></textarea>
+            
 
+            <div class="component-area">
+                <button class="button" onclick="changeHTMLBackground();">window background</button>
+                
+            </div>
         </div>
     </div>
     <script src="index_files/music.js"></script>
@@ -216,5 +223,25 @@
     <script src="index_files/view.js"></script>    
     <script src="index_files/components.js"></script>
     <script src="index_files/run.js"></script>
+    <script>
+        var htmlBackgroundIndex = 0;
+        const colorList = [{background: 'rgba(0,0,0,0.05)', color: 'black'},
+            {background: 'black', color: 'white'}
+        ];
+
+        function changeHTMLBackground()
+        {
+            if (htmlBackgroundIndex < colorList.length -1)
+            {
+                htmlBackgroundIndex++;                
+            }
+            else
+            {
+                htmlBackgroundIndex = 0;
+            }
+            document.body.style.backgroundColor = colorList[htmlBackgroundIndex].background;
+            document.body.style.color = colorList[htmlBackgroundIndex].color;
+        }
+    </script>
 </body>
 </html>
