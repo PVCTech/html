@@ -481,6 +481,13 @@
 }`
                 );
                 break;
+            
+            case 'h1':
+                appendCode('htmlInput2',`<h1></h1>`);
+                break;
+            case 'h2':
+                appendCode('htmlInput2',`<h2></h2>`);
+                break;
 
         }
     }
