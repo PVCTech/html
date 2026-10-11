@@ -315,3 +315,50 @@ function changeFontSize()
 
 
 
+
+function showTab3(id)
+{
+    const htmlInput = document.getElementById('htmlInput3');
+    const cssInput = document.getElementById('cssInput3');
+    const jsInput = document.getElementById('jsInput3');
+
+    const htmlButton = document.getElementById('htmlButton3');
+    const cssButton = document.getElementById('cssButton3');
+    const jsButton = document.getElementById('jsButton3');
+
+    switch (id)
+    {
+        case 'html':
+            htmlInput.classList.remove('hidden');
+            cssInput.classList.add('hidden');
+            jsInput.classList.add('hidden');
+
+            htmlButton.classList.add('tab__button-active');
+            cssButton.classList.remove('tab__button-active');
+            jsButton.classList.remove('tab__button-active');
+            break;
+
+        case 'css':
+            htmlInput.classList.add('hidden');
+            cssInput.classList.remove('hidden');
+            jsInput.classList.add('hidden');
+
+            htmlButton.classList.remove('tab__button-active');
+            cssButton.classList.add('tab__button-active');
+            jsButton.classList.remove('tab__button-active');
+            break;
+
+        case 'js':
+            htmlInput.classList.add('hidden');
+            cssInput.classList.add('hidden');
+            jsInput.classList.remove('hidden');
+
+            htmlButton.classList.remove('tab__button-active');
+            cssButton.classList.remove('tab__button-active');
+            jsButton.classList.add('tab__button-active');
+            break;
+    }
+}
+
+
+

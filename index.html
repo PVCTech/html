@@ -184,7 +184,29 @@
                 <button class="button" onclick="addComponent('form')">+ Form</button>
                 <button class="button" onclick="addComponent('link')">+ Link</button>
                 <button class="button" onclick="addComponent('icon')">+ Icon</button>
-            </div>            
+            </div>
+            
+            
+            <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;margin-top: 12px;">
+                <div class="tab__button tab__button-active" id="htmlButton3" onclick="showTab3('html')">
+                    <div style="width:10px; height:10px; background:orange;"></div>
+                    HTML
+                </div>
+                <div class="tab__button" id="cssButton3" onclick="showTab3('css')">
+                    <div style="width:10px; height:10px; background:green;"></div>
+                    CSS
+                </div>
+                <div class="tab__button" id="jsButton3" onclick="showTab3('js')">
+                    <div style="width:10px; height:10px; background:red;"></div>
+                    JS
+                </div>
+            </div>
+
+
+            <!-- INPUT2 -->
+            <textarea class="input" style="width: 95%;" id="htmlInput3" spellcheck="false"></textarea>
+            <textarea class="input hidden" style="width: 95%;" id="cssInput3" spellcheck="false"></textarea>
+            <textarea class="input hidden" style="width: 95%;" id="jsInput3" spellcheck="false"></textarea>
         </div>
     </div>
     <script src="index_files/music.js"></script>
