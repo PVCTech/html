@@ -80,7 +80,7 @@
             grid-template-rows:32px 24px 30vh auto auto; min-height:96vh; min-width:0;">
             <div class="run-area">                
                 <div id="input_caption_div" style="position: fixed; top:0px; left: 0px; display: none;width:95vw;">
-                    <textarea class="input"
+                    <textarea class="input" style="padding:8px;"
                         id="input_caption"><span style="font-weight: bold;">HTML code</span></textarea><br>
                     <button onclick="document.getElementById('input_caption_div').style.display='none';">x</button>
                 </div>
@@ -109,11 +109,11 @@
                     JS
                 </div>
             </div>
-
-            <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false"></textarea>
-            <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false"></textarea>
-            <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
-
+            <div id="control2">
+                <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false"></textarea>
+                <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false"></textarea>
+                <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
+            </div>
             <div class="editor-key-row" aria-label="Editor keys" id="control_shortKey">                
                 <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
                 <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
@@ -212,8 +212,14 @@
             
 
             <div class="component-area">
-                <button class="button" onclick="changeHTMLBackground();">window background</button>
-                
+                <button class="button" id="changeHTMLBackground_button" onclick="changeHTMLBackground();">window background</button>
+                <button class="button" id="changeViewBackgroundBlack_button" onclick="changeViewBackgroundBlack();">view background</button>
+            </div>
+
+            <div class="run-area">
+                <button class="button" onclick="document.getElementById('control').style.display='none';">
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -241,6 +247,33 @@
             }
             document.body.style.backgroundColor = colorList[htmlBackgroundIndex].background;
             document.body.style.color = colorList[htmlBackgroundIndex].color;
+            document.getElementById('changeHTMLBackground_button').style.backgroundColor = colorList[htmlBackgroundIndex].background;
+            document.getElementById('changeHTMLBackground_button').style.color = colorList[htmlBackgroundIndex].color;
+        }
+
+        var viewDefaultBackground = 'white';
+        function changeViewBackgroundBlack()
+        {
+            if (viewDefaultBackground == 'white')
+            {
+                viewDefaultBackground = 'black';
+                document.getElementById('cssInput3').value = 
+`body
+{
+    background:black;
+    color:white;
+    font-size:20px;
+}`;
+                document.getElementById('changeViewBackgroundBlack_button').style.backgroundColor = 'black';
+                document.getElementById('changeViewBackgroundBlack_button').style.color = 'white';
+            }
+            else
+            {
+                viewDefaultBackground = 'white';
+                document.getElementById('cssInput3').value = '';
+                document.getElementById('changeViewBackgroundBlack_button').style.backgroundColor = 'white';
+                document.getElementById('changeViewBackgroundBlack_button').style.color = 'black';
+            }
         }
     </script>
 </body>

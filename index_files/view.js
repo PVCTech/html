@@ -144,19 +144,27 @@ function load()
     const css = document.getElementById('cssInput').value;
     const js = document.getElementById('jsInput').value;
 
+
+    const html3 = document.getElementById('htmlInput3').value;
+    const css3 = document.getElementById('cssInput3').value;
+    const js3 = document.getElementById('jsInput3').value;
+
     const code = `
     <!DOCTYPE html>
     <html>
         <head>
             <style>
+                ${css3}
                 ${css}
             </style>
 
             <script src="index_files/alert.js"></script>
         </head>
         <body>
+            ${html3}
             ${html}
             <script>
+                ${js3.replace(/<\/script/gi, '<\\/script')}
                 ${js.replace(/<\/script/gi, '<\\/script')}
             <\/script>
         </body>

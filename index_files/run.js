@@ -150,7 +150,7 @@ async function typeCode(inputId, code, runId)
         }
 
 
-        if (Math.random() < 0.035 && isMistakeCandidate(kyTuDung))
+        if (Math.random() < 0.015 && isMistakeCandidate(kyTuDung))
         {
             const kyTuSai = randomWrongCharacter(kyTuDung);
             input.value += kyTuSai;

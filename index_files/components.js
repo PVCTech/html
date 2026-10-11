@@ -9,7 +9,7 @@
 
     function insertEditorText(text)
     {
-        const input = document.querySelector('#control textarea:not(.hidden)');
+        const input = document.querySelector('#control2 textarea:not(.hidden)');
         if (!input) return;
 
         const start = input.selectionStart;
