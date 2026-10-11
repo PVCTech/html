@@ -77,27 +77,16 @@
         position: fixed; top:0px; left:0px; z-index:200; 
         height:100vh; width:100%; overflow-y:scroll; padding:8px;box-sizing: border-box;">
         <div style="padding-top:12px; display:grid; grid-template-columns:minmax(0, 1fr); 
-            grid-template-rows:24px 24px 45vh 30px auto; min-height:96vh; min-width:0;">
-            <div style="position: fixed; top:4px; left: 4px; padding: 6px;background-color: white;" onclick="APP.control.toggleShortKeyPannel();">
-                ☰
-            </div>
-            <div class="editor-key-row hidden" aria-label="Editor keys" id="control_shortKey">
-                
-                <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
-                <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
-                <button class="button editor-key" onclick="insertEditorText('{')" aria-label="Insert opening brace">{</button>
-                <button class="button editor-key" onclick="insertEditorText('}')" aria-label="Insert closing brace">}</button>
-                <button class="button editor-key-tab" style="grid-column: 5 / span 2;" onclick="APP.control.backSpace()" aria-label="Backspace">⌫ Bksp</button>
-
-                <button class="button editor-key-tab" style="grid-column: 1 / span 2;" onclick="insertTab()" aria-label="Insert tab">↦ Tab</button>                
-                <button class="button editor-key" onclick="insertEditorText(';')" aria-label="Insert semicolon">;</button>
-                <button class="button editor-key" onclick="insertEditorText('/')" aria-label="Insert semicolon">/</button>
-                <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
-                <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>                
-            </div>
-
-            <div class="run-area">   
-                <input id="input_caption" type="text" value='<span style="font-weight: bold;">HTML code</span>' placeholder="caption">      
+            grid-template-rows:24px 24px 30vh 30px auto; min-height:96vh; min-width:0;">
+            <div class="run-area">                
+                <div id="input_caption_div" style="position: fixed; top:0px; left: 0px; display: none;width:95vw;">
+                    <textarea class="input"
+                        id="input_caption"><span style="font-weight: bold;">HTML code</span></textarea><br>
+                    <button onclick="document.getElementById('input_caption_div').style.display='none';">x</button>
+                </div>
+                <button class="button button__shadow" id="caption" onclick="document.getElementById('input_caption_div').style.display='block';">
+                    Caption
+                </button>
                 <button class="button button__shadow" id="clear">
                     Clear
                 </button>
@@ -105,6 +94,7 @@
                     Close
                 </button>
             </div>
+            
             <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
                 <div class="tab__button tab__button-active" id="htmlButton2" onclick="showTab2('html')">
                     <div style="width:10px; height:10px; background:orange;"></div>
@@ -120,11 +110,23 @@
                 </div>
             </div>
 
-
-            <!-- INPUT2 -->
             <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false"></textarea>
             <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false"></textarea>
             <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
+
+            <div class="editor-key-row" aria-label="Editor keys" id="control_shortKey">                
+                <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
+                <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
+                <button class="button editor-key" onclick="insertEditorText('{')" aria-label="Insert opening brace">{</button>
+                <button class="button editor-key" onclick="insertEditorText('}')" aria-label="Insert closing brace">}</button>
+                <button class="button editor-key-tab" style="grid-column: 5 / span 2;" onclick="APP.control.backSpace()" aria-label="Backspace">⌫ Bksp</button>
+
+                <button class="button editor-key-tab" style="grid-column: 1 / span 2;" onclick="insertTab()" aria-label="Insert tab">↦ Tab</button>                
+                <button class="button editor-key" onclick="insertEditorText(';')" aria-label="Insert semicolon">;</button>
+                <button class="button editor-key" onclick="insertEditorText('/')" aria-label="Insert semicolon">/</button>
+                <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
+                <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>                                        
+            </div>
 
             <div class="run-area">        
                 <button id="music_play" class="button" style="width:80px;" onclick="playRandomMusic();">
@@ -201,12 +203,11 @@
                     JS
                 </div>
             </div>
-
-
-            <!-- INPUT2 -->
+            <!-- INPUT3 -->
             <textarea class="input" style="width: 95%;" id="htmlInput3" spellcheck="false"></textarea>
             <textarea class="input hidden" style="width: 95%;" id="cssInput3" spellcheck="false"></textarea>
             <textarea class="input hidden" style="width: 95%;" id="jsInput3" spellcheck="false"></textarea>
+
         </div>
     </div>
     <script src="index_files/music.js"></script>
