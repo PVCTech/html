@@ -217,6 +217,7 @@
             <div class="component-area">
                 <button class="button" id="changeHTMLBackground_button" onclick="changeHTMLBackground();">window background</button>
                 <button class="button" id="changeViewBackgroundBlack_button" onclick="changeViewBackgroundBlack();">view background</button>
+                <button class="button" onclick="addHiddenComponent('caption')">+ caption</button>
             </div>
 
             <div class="run-area">
@@ -232,6 +233,7 @@
     <script src="index_files/view.js"></script>    
     <script src="index_files/components.js"></script>
     <script src="index_files/run.js"></script>
+    <script src="index_files/hiddenComponents.js"></script>
     <script>
         var htmlBackgroundIndex = 0;
         const colorList = [{background: 'rgba(0,0,0,0.05)', color: 'black'},
