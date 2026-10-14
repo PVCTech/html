@@ -119,7 +119,8 @@
                 <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
                 <button class="button editor-key" onclick="insertEditorText('{')" aria-label="Insert opening brace">{</button>
                 <button class="button editor-key" onclick="insertEditorText('}')" aria-label="Insert closing brace">}</button>
-                <button class="button editor-key-tab" style="grid-column: 5 / span 2;" onclick="APP.control.backSpace()" aria-label="Backspace">⌫ Bksp</button>
+                <button class="button editor-key" onclick="insertEditorText('=')" aria-label="Insert closing brace">=</button>
+                <button class="button editor-key" onclick="insertEditorText('&quot;')" aria-label="Insert closing brace">"</button>
 
                 <button class="button editor-key-tab" style="grid-column: 1 / span 2;" onclick="insertTab()" aria-label="Insert tab">↦ Tab</button>                
                 <button class="button editor-key" onclick="insertEditorText(';')" aria-label="Insert semicolon">;</button>
@@ -256,23 +257,26 @@
         var viewDefaultBackground = 'white';
         function changeViewBackgroundBlack()
         {
-            if (viewDefaultBackground == 'white')
-            {
-                viewDefaultBackground = 'black';
-                document.getElementById('cssInput3').value = 
+            let cssBl = 
 `body
 {
     background:black;
     color:white;
     font-size:20px;
 }`;
+
+            if (viewDefaultBackground == 'white')
+            {
+                viewDefaultBackground = 'black';
+                document.getElementById('cssInput3').value += cssBl;
+
                 document.getElementById('changeViewBackgroundBlack_button').style.backgroundColor = 'black';
                 document.getElementById('changeViewBackgroundBlack_button').style.color = 'white';
             }
             else
             {
-                viewDefaultBackground = 'white';
-                document.getElementById('cssInput3').value = '';
+                viewDefaultBackground = 'white';                
+                document.getElementById('cssInput3').value = document.getElementById('cssInput3').value.replace(cssBl, '');
                 document.getElementById('changeViewBackgroundBlack_button').style.backgroundColor = 'white';
                 document.getElementById('changeViewBackgroundBlack_button').style.color = 'black';
             }
