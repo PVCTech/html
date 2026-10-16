@@ -148,12 +148,12 @@
             <div id="view2_div" style="display:none;">
                 <iframe class="input" id="view2" style="border:none;height: 30vh;border-radius: 0px 0px 6px 6px;" oclick="this.style.display = 'none';"></iframe>
                 <button style="padding:8px; border-radius:8px;width: 100%;"
-                        onclick="document.getElementById('view2_div').style.display='none';">
-                        x
-                    </button>
+                    onclick="document.getElementById('view2_div').style.display='none';">
+                    x
+                </button>
             </div>
             
-            
+                      
             <div class="component-area" style="background-color: #f4f4f4;">
                 <div style="display:flex; flex-direction:row;">                
                     <audio id="music" controls style="height:30px;"></audio>                
@@ -202,6 +202,22 @@
 
             <details style="margin-top: 12px;">
                 <summary style="color:orange;font-weight:bold;">
+                    Content text
+                </summary>
+                <ul style="padding-left: 20px;list-style: none;" id="ul_sapTheoPhong">
+                    <li>
+                        <textarea id="content_text" class="input" style="height: 100px; width: 250px;">Web 
+#freeweb #coding #htmltutorial #csstutorial</textarea>
+                        <button style="padding:8px; border-radius:8px;width: 120px;"
+                            onclick="copyToClipboard('content_text');">
+                            Copy
+                        </button>
+                    </li>
+                </ul>
+            </details>
+
+            <details style="margin-top: 12px;">
+                <summary style="color:orange;font-weight:bold;">
                     Components
                 </summary>
                 <ul style="padding-left: 20px;list-style: none;" id="ul_sapTheoPhong">
@@ -229,7 +245,7 @@
             
             
             <details>
-                <summary style="color:orange;font-weight:bold;">
+                <summary style="color:orange;font-weight:bold;margin-top: 12px;">
                     Addin code
                 </summary>
                 <ul style="padding-left: 20px;list-style: none;" id="ul_sapTheoPhong">

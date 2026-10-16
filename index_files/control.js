@@ -397,3 +397,21 @@ function load2()
     document.getElementById('view2').srcdoc = code;
     document.getElementById('view2_div').style.display = 'block';
 }
+
+
+function copyToClipboard(noiDungId) 
+{
+    const input = document.getElementById(noiDungId);
+    let noiDung = input.value;
+    const brRegex = /<br\s*[\/]?>/gi;
+
+    const text = noiDung.replace(brRegex, "\r\n");
+
+    navigator.clipboard.writeText(text);    
+
+    input.classList.add("Note_Input_Active");
+
+    setTimeout(() => {
+        input.classList.remove("Note_Input_Active");
+    }, 100);
+}
