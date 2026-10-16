@@ -154,9 +154,9 @@
             </div>
             
                       
-            <div class="component-area" style="background-color: #f4f4f4;">
+            <div class="component-area" style="background-color: #f4f4f4; opacity:0.7;">
                 <div style="display:flex; flex-direction:row;">                
-                    <audio id="music" controls style="height:30px;"></audio>                
+                    <audio id="music" controls style="height:30px; opacity:0.8;"></audio>                
                 </div>
                 <script src="index_files/clock.js"></script>
 
@@ -174,7 +174,7 @@
                     </div>
 
                     <div class="control">
-                        <select id="speedControl" class="button" style="width:80px; background-color:#f4f4f4;" onchange="changeSpeed_select()">   
+                        <select id="speedControl" class="button" style="width:80px; background-color:#f4f4f4; opacity:0.7;" onchange="changeSpeed_select()">   
                             <option value="-">Custom</option>                     
                             <option value="slow">Slow</option>
                             <option value="medium" selected>Medium</option>
@@ -183,7 +183,7 @@
                             <option value="supperFast">Supper fast</option>
                             <option value="ssFast">SS fast</option>
                         </select>
-                        <input type="text" value="1" class="button"  onchange="changeSpeed_text()" id="speed_heSo" style="width:20px; background-color:#f4f4f4;">
+                        <input type="text" value="1" class="button"  onchange="changeSpeed_text()" id="speed_heSo" style=" opacity:0.7;width:20px; background-color:#f4f4f4;">
                     </div>
                 </div>
                 <div class="run-area">        
@@ -206,13 +206,21 @@
                 </summary>
                 <ul style="padding-left: 20px;list-style: none;" id="ul_sapTheoPhong">
                     <li>
-                        <textarea id="content_text" class="input" style="height: 100px; width: 250px;">Web 
+                        <textarea id="content_text" class="input" onfocus="document.getElementById('content_text_copyButton').innerText='Copy'" style="height: 100px; width: 250px;">Web 
 #freeweb #coding #htmltutorial #csstutorial</textarea>
                         <button style="padding:8px; border-radius:8px;width: 120px;"
-                            onclick="copyToClipboard('content_text');">
+                            onclick="copyToClipboard('content_text');" id="content_text_copyButton">
                             Copy
                         </button>
                     </li>
+                    <div id="content_text_list">
+                        <ul>
+                            <li>Form: button, input, field, textarea, color, range, ...</li>
+                            <li>Layout: header, footer, menu, </li>
+                            <li>CSS: style, color, animation, .. </li>
+                            <li>JS: funtions, format text, auto, ...</li>
+                        </ul>
+                    </div>
                 </ul>
             </details>
 
@@ -342,6 +350,7 @@
                 document.getElementById('changeViewBackgroundBlack_button').style.backgroundColor = 'white';
                 document.getElementById('changeViewBackgroundBlack_button').style.color = 'black';
             }
+            showTab3('css');
         }
     </script>
 </body>

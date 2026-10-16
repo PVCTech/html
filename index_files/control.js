@@ -414,4 +414,5 @@ function copyToClipboard(noiDungId)
     setTimeout(() => {
         input.classList.remove("Note_Input_Active");
     }, 100);
+    document.getElementById('content_text_copyButton').innerText='Copied';
 }

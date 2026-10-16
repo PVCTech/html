@@ -166,6 +166,13 @@
         }
 
 
+        .Note_Input_Active
+        {
+            background-color: #17212b;
+            color: #f2f2f2;
+        }
+
+
         .run-area
         {
             box-sizing: border-box;
