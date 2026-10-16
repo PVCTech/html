@@ -361,4 +361,39 @@ function showTab3(id)
 }
 
 
+function load2()
+{
+    const html2 = document.getElementById('htmlInput2').value;
+    const css2 = document.getElementById('cssInput2').value;
+    const js2 = document.getElementById('jsInput2').value;
 
+
+    const html3 = document.getElementById('htmlInput3').value;
+    const css3 = document.getElementById('cssInput3').value;
+    const js3 = document.getElementById('jsInput3').value;
+
+    const code = `
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <style>
+                ${css3}
+                ${css2}
+            </style>
+
+            <script src="index_files/alert.js"></script>
+        </head>
+        <body>
+            ${html3}
+            ${html2}
+            <script>
+                ${js3.replace(/<\/script/gi, '<\\/script')}
+                ${js2.replace(/<\/script/gi, '<\\/script')}
+            <\/script>
+        </body>
+    </html>
+    `;
+
+    document.getElementById('view2').srcdoc = code;
+    document.getElementById('view2_div').style.display = 'block';
+}

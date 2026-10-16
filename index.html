@@ -49,7 +49,19 @@
 
         <div style="width:100%; padding:4px; display:grid; grid-template-columns:1fr 200px;opacity:0.6">
             <div style="text-align:left;">
-                <input type="radio" checked style="opacity:0.4;">
+                <style>
+                    .onlineButton
+                    {
+                        animation: shinkOnlineButton 3s infinite;
+                    }
+
+                    @keyframes shinkOnlineButton 
+                    {
+                        from {opacity: 0.2;}
+                        to {opacity: 0.8;}
+                    }
+                </style>
+                <input type="radio" class="onlineButton" checked>
                 Live
             </div>
             <div style="display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;">
@@ -73,18 +85,22 @@
     <!-- =========================================================
          KHU VỰC SOẠN CODE HỖ TRỢ
          ========================================================= -->
-    <div id="control" style="display: none; background: white; 
+    <div id="control" style="display: none2; background: white; 
         position: fixed; top:0px; left:0px; z-index:200; 
         height:100vh; width:100%; overflow-y:scroll; padding:8px;box-sizing: border-box;">
         <div style="padding-top:12px; display:grid; grid-template-columns:minmax(0, 1fr); 
             grid-template-rows:32px 24px 30vh auto auto; min-height:96vh; min-width:0;">
             <div class="run-area">                
-                <div id="input_caption_div" style="position: fixed; top:0px; left: 0px; display: none;width:95vw;">
+                <div id="input_caption_div" style="position: fixed; top:10px; left: 0px; display: none;width:95vw;
+                    flex-direction: column;background-color: white; padding: 12px; align-items:center; box-shadow:0px 0px 3px 3px rgba(0,0,0,0.4);">
                     <textarea class="input" style="padding:8px;"
                         id="input_caption"><span style="font-weight: bold;">HTML code</span></textarea><br>
-                    <button onclick="document.getElementById('input_caption_div').style.display='none';">x</button>
+                    <button style="padding:8px; border-radius:8px;width: 100px;"
+                        onclick="document.getElementById('input_caption_div').style.display='none';">
+                        x
+                    </button>
                 </div>
-                <button class="button" id="caption" onclick="document.getElementById('input_caption_div').style.display='block';">
+                <button class="button" id="caption" onclick="document.getElementById('input_caption_div').style.display='flex';">
                     Caption
                 </button>
                 <button class="button" id="clear">
@@ -110,10 +126,11 @@
                 </div>
             </div>
             <div id="control2">
-                <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false"></textarea>
-                <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false"></textarea>
-                <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false"></textarea>
-            </div>
+                <textarea class="input" style="width: 95%;" id="htmlInput2" spellcheck="false" onkeyup="load2();"></textarea>
+                <textarea class="input hidden" style="width: 95%;" id="cssInput2" spellcheck="false" onkeyup="load2();"></textarea>
+                <textarea class="input hidden" style="width: 95%;" id="jsInput2" spellcheck="false" onkeyup="load2();"></textarea>
+            </div>            
+
             <div class="editor-key-row" aria-label="Editor keys" id="control_shortKey">                
                 <button class="button editor-key" onclick="insertEditorText('&lt;')" aria-label="Insert less-than">&lt;</button>
                 <button class="button editor-key" onclick="insertEditorText('&gt;')" aria-label="Insert greater-than">&gt;</button>
@@ -128,8 +145,16 @@
                 <button class="button editor-key" onclick="insertEditorText('[')" aria-label="Insert opening bracket">[</button>
                 <button class="button editor-key" onclick="insertEditorText(']')" aria-label="Insert closing bracket">]</button>                                        
             </div>
+            <div id="view2_div" style="display:none;">
+                <iframe class="input" id="view2" style="border:none;height: 30vh;border-radius: 0px 0px 6px 6px;" oclick="this.style.display = 'none';"></iframe>
+                <button style="padding:8px; border-radius:8px;width: 100%;"
+                        onclick="document.getElementById('view2_div').style.display='none';">
+                        x
+                    </button>
+            </div>
             
-            <div class="component-area">
+            
+            <div class="component-area" style="background-color: #f4f4f4;">
                 <div style="display:flex; flex-direction:row;">                
                     <audio id="music" controls style="height:30px;"></audio>                
                 </div>
@@ -175,50 +200,69 @@
                 </div>
             </div>       
 
-            <div class="component-area">
-                <button class="button" onclick="addComponent('button')">+ Button</button>
-                <button class="button" onclick="addComponent('image')">+ Image</button>
-                <button class="button" onclick="addComponent('select')">+ Select</button>
-                <button class="button" onclick="addComponent('input')">+ Input</button>
-                <button class="button" onclick="addComponent('textarea')">+ Textarea</button>
-                <button class="button" onclick="addComponent('checkbox')">+ Checkbox</button>
-                <button class="button" onclick="addComponent('radio')">+ Radio</button>
-                <button class="button" onclick="addComponent('table')">+ Table</button>
-                <button class="button" onclick="addComponent('card')">+ Card</button>
-                <button class="button" onclick="addComponent('container')">+ Container</button>
-                <button class="button" onclick="addComponent('form')">+ Form</button>
-                <button class="button" onclick="addComponent('link')">+ Link</button>
-                <button class="button" onclick="addComponent('icon')">+ Icon</button>
-                <button class="button" onclick="addComponent('h1')">+ h1</button>
-                <button class="button" onclick="addComponent('h2')">+ h2</button>
-            </div>
+            <details style="margin-top: 12px;">
+                <summary style="color:orange;font-weight:bold;">
+                    Components
+                </summary>
+                <ul style="padding-left: 20px;list-style: none;" id="ul_sapTheoPhong">
+                    <li>
+                        <div class="component-area">
+                            <button class="button" onclick="addComponent('button')">+ Button</button>
+                            <button class="button" onclick="addComponent('image')">+ Image</button>
+                            <button class="button" onclick="addComponent('select')">+ Select</button>
+                            <button class="button" onclick="addComponent('input')">+ Input</button>
+                            <button class="button" onclick="addComponent('textarea')">+ Textarea</button>
+                            <button class="button" onclick="addComponent('checkbox')">+ Checkbox</button>
+                            <button class="button" onclick="addComponent('radio')">+ Radio</button>
+                            <button class="button" onclick="addComponent('table')">+ Table</button>
+                            <button class="button" onclick="addComponent('card')">+ Card</button>
+                            <button class="button" onclick="addComponent('container')">+ Container</button>
+                            <button class="button" onclick="addComponent('form')">+ Form</button>
+                            <button class="button" onclick="addComponent('link')">+ Link</button>
+                            <button class="button" onclick="addComponent('icon')">+ Icon</button>
+                            <button class="button" onclick="addComponent('h1')">+ h1</button>
+                            <button class="button" onclick="addComponent('h2')">+ h2</button>
+                        </div>
+                    </li>
+                </ul>
+            </details>
             
             
-            <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;margin-top: 12px;">
-                <div class="tab__button tab__button-active" id="htmlButton3" onclick="showTab3('html')">
-                    <div style="width:10px; height:10px; background:orange;"></div>
-                    HTML
-                </div>
-                <div class="tab__button" id="cssButton3" onclick="showTab3('css')">
-                    <div style="width:10px; height:10px; background:green;"></div>
-                    CSS
-                </div>
-                <div class="tab__button" id="jsButton3" onclick="showTab3('js')">
-                    <div style="width:10px; height:10px; background:red;"></div>
-                    JS
-                </div>
-            </div>
-            <!-- INPUT3 -->
-            <textarea class="input" style="width: 95%;" id="htmlInput3" spellcheck="false"></textarea>
-            <textarea class="input hidden" style="width: 95%;" id="cssInput3" spellcheck="false"></textarea>
-            <textarea class="input hidden" style="width: 95%;" id="jsInput3" spellcheck="false"></textarea>
-            
+            <details>
+                <summary style="color:orange;font-weight:bold;">
+                    Addin code
+                </summary>
+                <ul style="padding-left: 20px;list-style: none;" id="ul_sapTheoPhong">
+                    <li>
+                        <div style="width:100%; padding:4px; display:flex; flex-direction:row; flex-wrap:nowrap; gap:10px;margin-top: 12px;">
+                            <div class="tab__button tab__button-active" id="htmlButton3" onclick="showTab3('html')">
+                                <div style="width:10px; height:10px; background:orange;"></div>
+                                HTML
+                            </div>
+                            <div class="tab__button" id="cssButton3" onclick="showTab3('css')">
+                                <div style="width:10px; height:10px; background:green;"></div>
+                                CSS
+                            </div>
+                            <div class="tab__button" id="jsButton3" onclick="showTab3('js')">
+                                <div style="width:10px; height:10px; background:red;"></div>
+                                JS
+                            </div>
+                        </div>
+                        <!-- INPUT3 -->
+                        <textarea class="input" style="width: 95%;" id="htmlInput3" spellcheck="false"></textarea>
+                        <textarea class="input hidden" style="width: 95%;" id="cssInput3" spellcheck="false"></textarea>
+                        <textarea class="input hidden" style="width: 95%;" id="jsInput3" spellcheck="false"></textarea>
+                        
 
-            <div class="component-area">
-                <button class="button" id="changeHTMLBackground_button" onclick="changeHTMLBackground();">window background</button>
-                <button class="button" id="changeViewBackgroundBlack_button" onclick="changeViewBackgroundBlack();">view background</button>
-                <button class="button" onclick="addHiddenComponent('caption')">+ caption</button>
-            </div>
+                        <div class="component-area">
+                            <button class="button" id="changeHTMLBackground_button" onclick="changeHTMLBackground();">window background</button>
+                            <button class="button" id="changeViewBackgroundBlack_button" onclick="changeViewBackgroundBlack();">view background</button>
+                            <button class="button" onclick="addHiddenComponent('caption')">+ caption</button>
+                        </div>
+                    </li> 
+                </ul>
+            </details>
+            
 
             <div class="run-area">
                 <button class="button" onclick="document.getElementById('control').style.display='none';">
